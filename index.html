@@ -4,11 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Market Compass Pro | AlphaEdge</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --gold: #C9A84C;
-  --gold-light: #E8C96A;
   --dark: #0A0A0A;
   --dark2: #111111;
   --dark3: #1A1A1A;
@@ -25,8 +24,7 @@ body {
   font-weight: 300;
   overflow-x: hidden;
 }
-
-/* noise overlay */
+body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
 body::before {
   content: '';
   position: fixed;
@@ -37,6 +35,54 @@ body::before {
   opacity: 0.4;
 }
 
+/* LANG SWITCHER */
+.lang-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  padding: 10px 0;
+  background: rgba(10,10,10,0.92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+.lang-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  padding: 6px 20px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+.lang-btn:hover { color: var(--gold); }
+.lang-btn.active {
+  color: var(--gold);
+  border-color: var(--border);
+  background: rgba(201,168,76,0.08);
+}
+.lang-sep {
+  width: 1px;
+  height: 14px;
+  background: var(--border);
+}
+
+/* hide/show by lang */
+[data-lang] { display: none; }
+body.lang-ko [data-lang="ko"] { display: block; }
+body.lang-en [data-lang="en"] { display: block; }
+body.lang-zh [data-lang="zh"] { display: block; }
+[data-lang-inline] { display: none; }
+body.lang-ko [data-lang-inline="ko"] { display: inline; }
+body.lang-en [data-lang-inline="en"] { display: inline; }
+body.lang-zh [data-lang-inline="zh"] { display: inline; }
+
 /* HERO */
 .hero {
   min-height: 100vh;
@@ -45,18 +91,16 @@ body::before {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 6rem 2rem 4rem;
   position: relative;
   border-bottom: 1px solid var(--border);
 }
 .hero::after {
   content: '';
   position: absolute;
-  bottom: -1px;
-  left: 50%;
+  bottom: -1px; left: 50%;
   transform: translateX(-50%);
-  width: 200px;
-  height: 1px;
+  width: 200px; height: 1px;
   background: var(--gold);
 }
 .brand-tag {
@@ -83,24 +127,29 @@ body::before {
 .hero-sub {
   font-size: clamp(13px, 2vw, 16px);
   color: var(--muted);
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
   line-height: 1.7;
   opacity: 0;
   animation: fadeUp 0.8s ease forwards 0.6s;
 }
-.hero-en {
+.limit-badges {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.8s;
+}
+.badge {
   font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  color: rgba(201,168,76,0.5);
-  letter-spacing: 0.1em;
-  margin-bottom: 3rem;
-  opacity: 0;
-  animation: fadeUp 0.8s ease forwards 0.7s;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--border);
+  color: var(--gold);
+  padding: 6px 14px;
 }
-.cta-wrap {
-  opacity: 0;
-  animation: fadeUp 0.8s ease forwards 0.9s;
-}
+.cta-wrap { opacity: 0; animation: fadeUp 0.8s ease forwards 0.9s; }
 .cta-btn {
   display: inline-block;
   padding: 16px 48px;
@@ -116,9 +165,7 @@ body::before {
   transition: color 0.3s;
 }
 .cta-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
+  content: ''; position: absolute; inset: 0;
   background: var(--gold);
   transform: translateX(-101%);
   transition: transform 0.3s ease;
@@ -126,319 +173,565 @@ body::before {
 .cta-btn:hover { color: var(--dark); }
 .cta-btn:hover::before { transform: translateX(0); }
 .cta-btn span { position: relative; z-index: 1; }
+.line-divider { width: 1px; height: 80px; background: linear-gradient(to bottom, var(--gold), transparent); margin: 0 auto; }
 
-/* DIVIDER LINE */
-.line-divider {
-  width: 1px;
-  height: 80px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  margin: 0 auto;
-}
+/* SECTIONS */
+.section { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
+.section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+.section-num { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 0.2em; }
+.section-title { font-size: 22px; font-weight: 500; color: var(--text); }
+.section-en { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.15em; margin-left: auto; }
 
-/* SIGNALS SECTION */
-.section {
-  padding: 6rem 2rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-.section-header {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  margin-bottom: 3rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
-}
-.section-num {
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  color: var(--gold);
-  letter-spacing: 0.2em;
-}
-.section-title {
-  font-size: 22px;
-  font-weight: 500;
-  color: var(--text);
-}
-.section-en {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.15em;
-  margin-left: auto;
-}
+/* NO-LOSS BOX */
+.no-loss-box { border: 1px solid var(--border); padding: 2.5rem; text-align: center; background: var(--dark2); margin-bottom: 2rem; }
+.no-loss-box .big-text { font-family: 'Bebas Neue', sans-serif; font-size: clamp(26px, 5vw, 40px); color: var(--gold); line-height: 1.2; margin-bottom: 1rem; letter-spacing: 0.02em; }
+.no-loss-box .desc { font-size: 14px; color: var(--muted); line-height: 1.9; }
 
-/* SIGNAL CARDS */
-.signal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-}
-.signal-card {
-  background: var(--dark2);
-  padding: 2rem 1.5rem;
-  transition: background 0.2s;
-}
+/* ZONE GRID */
+.zone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; background: #222; margin-bottom: 2rem; }
+.zone-card { padding: 2.5rem 2rem; position: relative; overflow: hidden; }
+.zone-card.bull { background: #0d1f3c; border: 1px solid #2563eb; }
+.zone-card.bear { background: #2a0d0d; border: 1px solid #dc2626; }
+.zone-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+.zone-card.bull::before { background: #3b82f6; }
+.zone-card.bear::before { background: #ef4444; }
+.zone-icon { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.25em; margin-bottom: 1rem; display: block; font-weight: 700; }
+.zone-card.bull .zone-icon { color: #60a5fa; }
+.zone-card.bear .zone-icon { color: #f87171; }
+.zone-title { font-size: 20px; font-weight: 700; margin-bottom: 0.75rem; }
+.zone-card.bull .zone-title { color: #eff6ff; }
+.zone-card.bear .zone-title { color: #fff1f1; }
+.zone-rule { font-size: 13px; line-height: 1.8; margin-bottom: 0.5rem; }
+.zone-rule span { display: inline-block; padding: 5px 14px; font-size: 12px; font-family: 'Space Mono', monospace; font-weight: 700; border-radius: 2px; }
+.zone-card.bull .zone-rule span.ok { background: #1d4ed8; color: #bfdbfe; }
+.zone-card.bull .zone-rule span.no { background: #1a1a2e; color: #4b5563; border: 1px solid #374151; }
+.zone-card.bear .zone-rule span.ok { background: #b91c1c; color: #fecaca; }
+.zone-card.bear .zone-rule span.no { background: #1a1a1a; color: #4b5563; border: 1px solid #374151; }
+.zone-rule-text { font-size: 13px; line-height: 1.8; margin-top: 0.75rem; }
+.zone-card.bull .zone-rule-text { color: #93c5fd; }
+.zone-card.bear .zone-rule-text { color: #fca5a5; }
+.zone-warning { margin-top: 1.25rem; padding: 10px 14px; font-size: 12px; line-height: 1.6; font-weight: 500; }
+.zone-card.bull .zone-warning { background: rgba(37,99,235,0.25); border-left: 3px solid #3b82f6; color: #bfdbfe; }
+.zone-card.bear .zone-warning { background: rgba(220,38,38,0.25); border-left: 3px solid #ef4444; color: #fecaca; }
+
+/* ORANGE LINE */
+.orange-line-box { border: 1px solid rgba(251,146,60,0.4); background: rgba(251,146,60,0.05); padding: 2.5rem 2rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+.orange-line-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: repeating-linear-gradient(90deg, #fb923c 0px, #fb923c 8px, transparent 8px, transparent 16px); }
+.orange-line-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #fb923c; margin-bottom: 1rem; }
+.orange-line-title { font-size: 20px; font-weight: 500; color: #fed7aa; margin-bottom: 1rem; }
+.orange-line-desc { font-size: 14px; color: var(--muted); line-height: 1.9; margin-bottom: 1.5rem; }
+.orange-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(251,146,60,0.2); border: 1px solid rgba(251,146,60,0.2); margin-bottom: 1.5rem; }
+.orange-rule-item { padding: 1.25rem 1.5rem; background: rgba(251,146,60,0.05); }
+.orange-rule-item .rule-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; margin-bottom: 0.5rem; color: #fb923c; }
+.orange-rule-item .rule-text { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 0.3rem; }
+.orange-rule-item .rule-sub { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.orange-caution { padding: 12px 16px; border-left: 2px solid #fb923c; background: rgba(251,146,60,0.06); font-size: 13px; color: var(--muted); line-height: 1.7; }
+.orange-caution strong { color: #fb923c; font-weight: 500; }
+
+/* PHILOSOPHY */
+.philosophy-intro { text-align: center; padding: 2rem; border: 1px solid var(--border); background: var(--dark2); margin-bottom: 2rem; }
+.philosophy-intro p { font-size: 15px; color: var(--muted); line-height: 1.9; }
+.philosophy-intro strong { color: var(--gold); font-weight: 500; }
+
+/* SIGNAL GRID */
+.signal-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.signal-card { background: var(--dark2); padding: 2rem 1.5rem; transition: background 0.2s; }
 .signal-card:hover { background: var(--dark3); }
-.signal-icon {
-  font-size: 24px;
-  margin-bottom: 1rem;
-  display: block;
-}
-.signal-name {
-  font-size: 15px;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: var(--text);
-}
-.signal-name-en {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem;
-  display: block;
-}
-.signal-desc {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.7;
-}
+.signal-icon { font-size: 24px; margin-bottom: 1rem; display: block; }
+.signal-name { font-size: 15px; font-weight: 500; margin-bottom: 0.5rem; color: var(--text); }
+.signal-name-en { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 1rem; display: block; }
+.signal-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
 /* CONDITIONS */
 .condition-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
-.condition-item {
-  background: var(--dark2);
-  padding: 1.5rem 2rem;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1.5rem;
-  align-items: start;
-  transition: background 0.2s;
-}
+.condition-item { background: var(--dark2); padding: 1.5rem 2rem; display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start; transition: background 0.2s; }
 .condition-item:hover { background: var(--dark3); }
-.condition-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-top: 5px;
-  flex-shrink: 0;
-}
-.condition-body {}
-.condition-name {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 0.4rem;
-  color: var(--text);
-}
-.condition-name-en {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-  margin-bottom: 0.6rem;
-  display: block;
-}
+.condition-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.condition-name { font-size: 14px; font-weight: 500; margin-bottom: 0.4rem; color: var(--text); }
+.condition-name-en { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.6rem; display: block; }
 .condition-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
 
+/* INFO GRID */
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 3rem; }
+.info-box { background: var(--dark2); padding: 2rem 1.5rem; text-align: center; }
+.info-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
+.info-label { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
 /* STEPS */
-.steps-list { display: flex; flex-direction: column; gap: 0; }
-.step-item {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 2rem;
-  padding: 2rem 0;
-  border-bottom: 1px solid var(--border);
-  align-items: start;
-}
+.steps-list { display: flex; flex-direction: column; }
+.step-item { display: grid; grid-template-columns: 60px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); align-items: start; }
 .step-item:last-child { border-bottom: none; }
-.step-num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 48px;
-  color: var(--gold);
-  line-height: 1;
-  opacity: 0.4;
-}
-.step-content {}
+.step-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--gold); line-height: 1; opacity: 0.4; }
 .step-title { font-size: 16px; font-weight: 500; margin-bottom: 0.4rem; color: var(--text); }
 .step-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
-.step-note {
-  display: inline-block;
-  margin-top: 0.6rem;
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  color: var(--gold);
-  border: 1px solid rgba(201,168,76,0.3);
-  padding: 4px 10px;
-  letter-spacing: 0.05em;
-}
+.step-note { display: inline-block; margin-top: 0.6rem; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--gold); border: 1px solid rgba(201,168,76,0.3); padding: 4px 10px; letter-spacing: 0.05em; text-decoration: none; }
+.step-note:hover { background: rgba(201,168,76,0.1); }
 
-/* FOOTER */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 3rem 2rem;
-  text-align: center;
-}
-.footer-brand {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px;
-  letter-spacing: 0.1em;
-  color: var(--gold);
-  margin-bottom: 0.5rem;
-}
+/* TELEGRAM */
+.tg-box { margin-top: 3rem; border: 1px solid var(--border); padding: 2.5rem; text-align: center; background: var(--dark2); }
+.tg-label { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.2em; margin-bottom: 0.75rem; }
+.tg-id { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--gold); letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+.tg-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 1.5rem; }
+.tg-btn { display: inline-block; padding: 12px 36px; border: 1px solid var(--gold); color: var(--gold); font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-decoration: none; position: relative; overflow: hidden; transition: color 0.3s; }
+.tg-btn::before { content: ''; position: absolute; inset: 0; background: var(--gold); transform: translateX(-101%); transition: transform 0.3s ease; }
+.tg-btn:hover { color: var(--dark); }
+.tg-btn:hover::before { transform: translateX(0); }
+.tg-btn span { position: relative; z-index: 1; }
+
+footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; }
+.footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; }
 .footer-text { font-size: 12px; color: var(--muted); line-height: 1.7; }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 600px) {
   .section { padding: 4rem 1.25rem; }
+  .zone-grid, .orange-rules { grid-template-columns: 1fr; }
   .signal-grid { grid-template-columns: 1fr 1fr; }
   .step-item { grid-template-columns: 40px 1fr; gap: 1rem; }
   .step-num { font-size: 36px; }
   .section-en { display: none; }
+  .info-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
-<body>
+<body class="lang-ko">
 
+<!-- 언어 전환 바 -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+  <div class="lang-sep"></div>
+  <button class="lang-btn" onclick="setLang('en')">English</button>
+  <div class="lang-sep"></div>
+  <button class="lang-btn" onclick="setLang('zh')">中文</button>
+</div>
+
+<!-- HERO -->
 <section class="hero">
   <p class="brand-tag">AlphaEdge · Exclusive Indicator</p>
   <h1 class="hero-title">Market<br><span>Compass</span><br>Pro</h1>
-  <p class="hero-sub">추세를 읽고, 진입을 잡고, 익절 타이밍을 포착하는<br>올인원 트레이딩 시그널 지표</p>
-  <p class="hero-en">All-in-one trend · entry · take-profit signal indicator</p>
+
+  <p class="hero-sub" data-lang="ko">추세를 읽고, 진입을 잡고, 익절 타이밍을 포착하는<br>올인원 트레이딩 시그널 지표</p>
+  <p class="hero-sub" data-lang="en">All-in-one trading signal indicator<br>for trend, entry & take-profit timing</p>
+  <p class="hero-sub" data-lang="zh">一体化交易信号指标<br>精准捕捉趋势、入场与止盈时机</p>
+
+  <div class="limit-badges">
+    <span class="badge" data-lang-inline="ko">최대 50명 한정</span>
+    <span class="badge" data-lang-inline="en">Max 50 Users</span>
+    <span class="badge" data-lang-inline="zh">限50人</span>
+    <span class="badge" data-lang-inline="ko">1개월 이용권</span>
+    <span class="badge" data-lang-inline="en">30-Day Access</span>
+    <span class="badge" data-lang-inline="zh">30天使用权</span>
+  </div>
+
   <div class="cta-wrap">
-    <a class="cta-btn" href="YOUR_BINGX_LINK" target="_blank">
-      <span>BingX 가입하고 지표 받기 →</span>
+    <a class="cta-btn" href="https://bingxdao.com/invite/ZS5ZJ3/" target="_blank">
+      <span data-lang-inline="ko">BingX 가입하고 지표 받기 →</span>
+      <span data-lang-inline="en">Join BingX & Get Indicator →</span>
+      <span data-lang-inline="zh">注册BingX获取指标 →</span>
     </a>
   </div>
 </section>
 
 <div class="line-divider"></div>
 
+<!-- 01 핵심 원칙 -->
 <div class="section">
   <div class="section-header">
     <span class="section-num">01</span>
-    <h2 class="section-title">시그널 구성</h2>
+    <h2 class="section-title">
+      <span data-lang-inline="ko">돈을 잃지 않는 원칙</span>
+      <span data-lang-inline="en">The Golden Rule</span>
+      <span data-lang-inline="zh">不亏损的原则</span>
+    </h2>
+    <span class="section-en">THE GOLDEN RULE</span>
+  </div>
+
+  <div class="no-loss-box">
+    <p class="big-text">
+      <span data-lang-inline="ko">"배경색만 알아도<br>손실을 막을 수 있다"</span>
+      <span data-lang-inline="en">"Know the background color,<br>prevent the loss"</span>
+      <span data-lang-inline="zh">"只要读懂背景色<br>就能避免亏损"</span>
+    </p>
+    <p class="desc" data-lang="ko">대부분의 트레이더가 손실을 보는 이유는 단 하나,<br>추세를 무시하고 역방향 포지션을 잡기 때문입니다.<br>Market Compass Pro는 배경색으로 지금 어떤 포지션만 쳐야 하는지를 알려줍니다.</p>
+    <p class="desc" data-lang="en">Most traders lose money for one simple reason —<br>they ignore the trend and trade against it.<br>Market Compass Pro uses background color to tell you exactly which direction to trade.</p>
+    <p class="desc" data-lang="zh">大多数交易者亏损的原因只有一个——<br>忽视趋势，逆势开仓。<br>Market Compass Pro通过背景色告诉您当前只能做哪个方向的仓位。</p>
+  </div>
+
+  <div class="zone-grid">
+    <div class="zone-card bull">
+      <span class="zone-icon">BULL ZONE · <span data-lang-inline="ko">파란 배경</span><span data-lang-inline="en">Blue BG</span><span data-lang-inline="zh">蓝色背景</span></span>
+      <p class="zone-title">
+        <span data-lang-inline="ko">롱만 치는 구간</span>
+        <span data-lang-inline="en">Long Only Zone</span>
+        <span data-lang-inline="zh">只做多区间</span>
+      </p>
+      <p class="zone-rule" data-lang="ko"><span class="ok">✓ 롱 진입 가능</span></p>
+      <p class="zone-rule" data-lang="en"><span class="ok">✓ Long Allowed</span></p>
+      <p class="zone-rule" data-lang="zh"><span class="ok">✓ 可以做多</span></p>
+      <p class="zone-rule" data-lang="ko"><span class="no">✗ 숏 진입 금지</span></p>
+      <p class="zone-rule" data-lang="en"><span class="no">✗ Short Forbidden</span></p>
+      <p class="zone-rule" data-lang="zh"><span class="no">✗ 禁止做空</span></p>
+      <p class="zone-rule-text" data-lang="ko">파란 배경이 켜지는 순간, 시장은 상승 추세입니다. 이 구간에서는 오직 롱 포지션만 진입해야 합니다. 숏을 치고 싶은 충동이 와도 배경이 파랗다면 절대 금지입니다.</p>
+      <p class="zone-rule-text" data-lang="en">When the blue background activates, the market is in an uptrend. Only long positions should be entered in this zone. No matter how tempting a short may look — if the background is blue, it's strictly forbidden.</p>
+      <p class="zone-rule-text" data-lang="zh">当蓝色背景亮起时，市场处于上升趋势。此区间只能开多仓。无论做空的冲动多强——背景是蓝色时，绝对禁止做空。</p>
+      <div class="zone-warning">
+        💡 <span data-lang-inline="ko">파란 배경 = 롱만, 숏은 쉬는 구간</span>
+        <span data-lang-inline="en">Blue = Long only, rest from shorts</span>
+        <span data-lang-inline="zh">蓝色 = 只做多，空仓休息</span>
+      </div>
+    </div>
+    <div class="zone-card bear">
+      <span class="zone-icon">BEAR ZONE · <span data-lang-inline="ko">빨간 배경</span><span data-lang-inline="en">Red BG</span><span data-lang-inline="zh">红色背景</span></span>
+      <p class="zone-title">
+        <span data-lang-inline="ko">숏만 치는 구간</span>
+        <span data-lang-inline="en">Short Only Zone</span>
+        <span data-lang-inline="zh">只做空区间</span>
+      </p>
+      <p class="zone-rule" data-lang="ko"><span class="ok">✓ 숏 진입 가능</span></p>
+      <p class="zone-rule" data-lang="en"><span class="ok">✓ Short Allowed</span></p>
+      <p class="zone-rule" data-lang="zh"><span class="ok">✓ 可以做空</span></p>
+      <p class="zone-rule" data-lang="ko"><span class="no">✗ 롱 진입 금지</span></p>
+      <p class="zone-rule" data-lang="en"><span class="no">✗ Long Forbidden</span></p>
+      <p class="zone-rule" data-lang="zh"><span class="no">✗ 禁止做多</span></p>
+      <p class="zone-rule-text" data-lang="ko">빨간 배경이 켜지는 순간, 시장은 하락 추세입니다. 이 구간에서는 오직 숏 포지션만 진입해야 합니다. 반등이 와도 배경이 빨갛다면 롱은 절대 금지입니다.</p>
+      <p class="zone-rule-text" data-lang="en">When the red background activates, the market is in a downtrend. Only short positions should be entered in this zone. Even during a bounce — if the background is red, longs are strictly forbidden.</p>
+      <p class="zone-rule-text" data-lang="zh">当红色背景亮起时，市场处于下降趋势。此区间只能开空仓。即使出现反弹——背景是红色时，绝对禁止做多。</p>
+      <div class="zone-warning">
+        💡 <span data-lang-inline="ko">빨간 배경 = 숏만, 롱은 쉬는 구간</span>
+        <span data-lang-inline="en">Red = Short only, rest from longs</span>
+        <span data-lang-inline="zh">红色 = 只做空，多仓休息</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="orange-line-box">
+    <p class="orange-line-label">ORANGE LINE · TREND BASELINE</p>
+    <p class="orange-line-title">
+      <span data-lang-inline="ko">오렌지 점선 — 시장의 중심축</span>
+      <span data-lang-inline="en">Orange Dashed Line — Market Axis</span>
+      <span data-lang-inline="zh">橙色虚线 — 市场中轴线</span>
+    </p>
+    <p class="orange-line-desc" data-lang="ko">차트에 표시되는 오렌지색 점선은 시장의 무게중심입니다.<br>현재 가격이 이 선을 기준으로 어디에 있는지만 봐도 추세의 강도를 파악할 수 있습니다.</p>
+    <p class="orange-line-desc" data-lang="en">The orange dashed line on the chart represents the market's center of gravity.<br>Simply knowing where the current price sits relative to this line reveals the strength of the trend.</p>
+    <p class="orange-line-desc" data-lang="zh">图表上的橙色虚线代表市场的重心。<br>只需观察当前价格相对于这条线的位置，即可判断趋势强度。</p>
+    <div class="orange-rules">
+      <div class="orange-rule-item">
+        <p class="rule-label">ABOVE LINE</p>
+        <p class="rule-text">
+          <span data-lang-inline="ko">롱 세력이 강한 구간</span>
+          <span data-lang-inline="en">Bull power dominant</span>
+          <span data-lang-inline="zh">多方力量强势</span>
+        </p>
+        <p class="rule-sub" data-lang="ko">가격이 오렌지 라인 위에 있을수록 매수 세력이 강하고 상승 모멘텀이 살아있습니다. 롱 진입 시 더욱 유리한 환경입니다.</p>
+        <p class="rule-sub" data-lang="en">The higher above the orange line, the stronger the buying pressure and upward momentum. This creates a more favorable environment for long entries.</p>
+        <p class="rule-sub" data-lang="zh">价格越高于橙色线，买方力量越强，上涨动能越足。这为做多创造了更有利的环境。</p>
+      </div>
+      <div class="orange-rule-item">
+        <p class="rule-label">BELOW LINE</p>
+        <p class="rule-text">
+          <span data-lang-inline="ko">숏 세력이 강한 구간</span>
+          <span data-lang-inline="en">Bear power dominant</span>
+          <span data-lang-inline="zh">空方力量强势</span>
+        </p>
+        <p class="rule-sub" data-lang="ko">가격이 오렌지 라인 아래에 있을수록 매도 세력이 강하고 하락 모멘텀이 살아있습니다. 숏 진입 시 더욱 유리한 환경입니다.</p>
+        <p class="rule-sub" data-lang="en">The lower below the orange line, the stronger the selling pressure and downward momentum. This creates a more favorable environment for short entries.</p>
+        <p class="rule-sub" data-lang="zh">价格越低于橙色线，卖方力量越强，下跌动能越足。这为做空创造了更有利的环境。</p>
+      </div>
+    </div>
+    <div class="orange-caution">
+      <strong>⚠ <span data-lang-inline="ko">추세 전환 구간 주의</span><span data-lang-inline="en">Caution at Trend Reversals</span><span data-lang-inline="zh">趋势转换区间注意</span></strong><br>
+      <span data-lang="ko">배경색이 바뀌는 추세 전환 시점에서는 오렌지 라인과 가격의 위치 관계가 일시적으로 맞지 않을 수 있습니다. 추세 전환 초입에는 포지션 크기를 줄이고, 배경색과 오렌지 라인이 모두 방향성을 확인해준 후 진입하는 것을 권장합니다.</span>
+      <span data-lang="en">At trend reversal points where the background color changes, the relationship between the orange line and price may temporarily misalign. During early reversals, reduce position size and wait for both the background color and orange line to confirm direction before entering.</span>
+      <span data-lang="zh">在背景色发生变化的趋势转换时点，橙色线与价格的位置关系可能暂时不一致。在趋势转换初期，建议减小仓位，等待背景色和橙色线均确认方向后再入场。</span>
+    </div>
+  </div>
+
+  <div class="philosophy-intro">
+    <p data-lang="ko"><strong>배경색</strong>으로 방향을 정하고,<br><strong>오렌지 라인</strong>으로 세력을 확인하고,<br><strong>시그널</strong>로 타이밍을 잡는다.<br><br>이 세 가지만 지켜도 불필요한 손실의 대부분을 막을 수 있습니다.</p>
+    <p data-lang="en">Set your <strong>direction</strong> with the background color,<br>confirm <strong>momentum</strong> with the orange line,<br>and time your <strong>entry</strong> with the signal.<br><br>Following these three rules alone eliminates most unnecessary losses.</p>
+    <p data-lang="zh">用<strong>背景色</strong>确定方向，<br>用<strong>橙色线</strong>确认力量，<br>用<strong>信号</strong>把握时机。<br><br>只要遵守这三条规则，就能避免大部分不必要的亏损。</p>
+  </div>
+</div>
+
+<!-- 02 시그널 구성 -->
+<div class="section" style="padding-top:0;">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">
+      <span data-lang-inline="ko">시그널 구성</span>
+      <span data-lang-inline="en">Signal Overview</span>
+      <span data-lang-inline="zh">信号构成</span>
+    </h2>
     <span class="section-en">SIGNAL OVERVIEW</span>
   </div>
   <div class="signal-grid">
     <div class="signal-card">
       <span class="signal-icon" style="color:#4ade80;">▲</span>
-      <p class="signal-name">롱 진입</p>
+      <p class="signal-name"><span data-lang-inline="ko">롱 진입</span><span data-lang-inline="en">Long Entry</span><span data-lang-inline="zh">做多入场</span></p>
       <span class="signal-name-en">LONG ENTRY</span>
-      <p class="signal-desc">상승 추세 확인 후 최적의 매수 타이밍을 포착합니다</p>
+      <p class="signal-desc" data-lang="ko">파란 배경에서 최적의 매수 타이밍을 포착합니다</p>
+      <p class="signal-desc" data-lang="en">Catches the best buy timing in the blue zone</p>
+      <p class="signal-desc" data-lang="zh">在蓝色背景下捕捉最佳买入时机</p>
     </div>
     <div class="signal-card">
       <span class="signal-icon" style="color:#f472b6;">◆</span>
-      <p class="signal-name">숏 진입</p>
+      <p class="signal-name"><span data-lang-inline="ko">숏 진입</span><span data-lang-inline="en">Short Entry</span><span data-lang-inline="zh">做空入场</span></p>
       <span class="signal-name-en">SHORT ENTRY</span>
-      <p class="signal-desc">하락 추세 확인 후 최적의 매도 타이밍을 포착합니다</p>
+      <p class="signal-desc" data-lang="ko">빨간 배경에서 최적의 매도 타이밍을 포착합니다</p>
+      <p class="signal-desc" data-lang="en">Catches the best sell timing in the red zone</p>
+      <p class="signal-desc" data-lang="zh">在红色背景下捕捉最佳卖出时机</p>
     </div>
     <div class="signal-card">
       <span class="signal-icon" style="color:#facc15;">✕</span>
-      <p class="signal-name">롱 익절</p>
+      <p class="signal-name"><span data-lang-inline="ko">롱 익절</span><span data-lang-inline="en">Long TP</span><span data-lang-inline="zh">多仓止盈</span></p>
       <span class="signal-name-en">LONG TAKE PROFIT</span>
-      <p class="signal-desc">롱 포지션의 최적 익절 타이밍을 알려줍니다</p>
+      <p class="signal-desc" data-lang="ko">롱 포지션의 최적 익절 타이밍을 알려줍니다</p>
+      <p class="signal-desc" data-lang="en">Signals the optimal take-profit for long positions</p>
+      <p class="signal-desc" data-lang="zh">提示多仓最佳止盈时机</p>
     </div>
     <div class="signal-card">
       <span class="signal-icon" style="color:#22d3ee;">✕</span>
-      <p class="signal-name">숏 익절</p>
+      <p class="signal-name"><span data-lang-inline="ko">숏 익절</span><span data-lang-inline="en">Short TP</span><span data-lang-inline="zh">空仓止盈</span></p>
       <span class="signal-name-en">SHORT TAKE PROFIT</span>
-      <p class="signal-desc">숏 포지션의 최적 익절 타이밍을 알려줍니다</p>
+      <p class="signal-desc" data-lang="ko">숏 포지션의 최적 익절 타이밍을 알려줍니다</p>
+      <p class="signal-desc" data-lang="en">Signals the optimal take-profit for short positions</p>
+      <p class="signal-desc" data-lang="zh">提示空仓最佳止盈时机</p>
     </div>
   </div>
 </div>
 
+<!-- 03 시그널 조건 -->
 <div class="section" style="padding-top:0;">
   <div class="section-header">
-    <span class="section-num">02</span>
-    <h2 class="section-title">시그널 조건</h2>
+    <span class="section-num">03</span>
+    <h2 class="section-title">
+      <span data-lang-inline="ko">시그널 조건</span>
+      <span data-lang-inline="en">Signal Conditions</span>
+      <span data-lang-inline="zh">信号条件</span>
+    </h2>
     <span class="section-en">SIGNAL CONDITIONS</span>
   </div>
   <div class="condition-list">
     <div class="condition-item">
       <div class="condition-dot" style="background:#4ade80;"></div>
-      <div class="condition-body">
-        <p class="condition-name">롱 진입</p>
+      <div>
+        <p class="condition-name"><span data-lang-inline="ko">롱 진입</span><span data-lang-inline="en">Long Entry</span><span data-lang-inline="zh">做多入场</span></p>
         <span class="condition-name-en">LONG ENTRY</span>
-        <p class="condition-desc">상승 배경(파랑) + 5분봉 모멘텀 지표 과매도 구간 상향돌파 시 시그널 발생</p>
+        <p class="condition-desc" data-lang="ko">파란 배경(상승 추세) + 5분봉 모멘텀 지표 과매도 구간 상향돌파 시 시그널 발생</p>
+        <p class="condition-desc" data-lang="en">Blue background (uptrend) + 5-min momentum indicator breaks above oversold zone</p>
+        <p class="condition-desc" data-lang="zh">蓝色背景（上升趋势）+ 5分钟动量指标向上突破超卖区间时产生信号</p>
       </div>
     </div>
     <div class="condition-item">
       <div class="condition-dot" style="background:#f472b6;"></div>
-      <div class="condition-body">
-        <p class="condition-name">숏 진입</p>
+      <div>
+        <p class="condition-name"><span data-lang-inline="ko">숏 진입</span><span data-lang-inline="en">Short Entry</span><span data-lang-inline="zh">做空入场</span></p>
         <span class="condition-name-en">SHORT ENTRY</span>
-        <p class="condition-desc">하락 배경(빨강) + 3분봉 모멘텀 지표 과매수 구간 상향돌파 시 시그널 발생</p>
+        <p class="condition-desc" data-lang="ko">빨간 배경(하락 추세) + 3분봉 모멘텀 지표 과매수 구간 상향돌파 시 시그널 발생</p>
+        <p class="condition-desc" data-lang="en">Red background (downtrend) + 3-min momentum indicator breaks above overbought zone</p>
+        <p class="condition-desc" data-lang="zh">红色背景（下降趋势）+ 3分钟动量指标向上突破超买区间时产生信号</p>
       </div>
     </div>
     <div class="condition-item">
       <div class="condition-dot" style="background:#facc15;"></div>
-      <div class="condition-body">
-        <p class="condition-name">롱 익절</p>
+      <div>
+        <p class="condition-name"><span data-lang-inline="ko">롱 익절</span><span data-lang-inline="en">Long TP</span><span data-lang-inline="zh">多仓止盈</span></p>
         <span class="condition-name-en">LONG TAKE PROFIT</span>
-        <p class="condition-desc">상승 배경(파랑) + 2시간봉 추세 지표 과매수 구간 상향돌파 시 시그널 발생</p>
+        <p class="condition-desc" data-lang="ko">파란 배경(상승 추세) + 2시간봉 추세 지표 과매수 구간 상향돌파 시 시그널 발생</p>
+        <p class="condition-desc" data-lang="en">Blue background (uptrend) + 2H trend indicator breaks above overbought zone</p>
+        <p class="condition-desc" data-lang="zh">蓝色背景（上升趋势）+ 2小时趋势指标向上突破超买区间时产生信号</p>
       </div>
     </div>
     <div class="condition-item">
       <div class="condition-dot" style="background:#22d3ee;"></div>
-      <div class="condition-body">
-        <p class="condition-name">숏 익절</p>
+      <div>
+        <p class="condition-name"><span data-lang-inline="ko">숏 익절</span><span data-lang-inline="en">Short TP</span><span data-lang-inline="zh">空仓止盈</span></p>
         <span class="condition-name-en">SHORT TAKE PROFIT</span>
-        <p class="condition-desc">하락 배경(빨강) + 2시간봉 추세 지표 과매도 구간 하향돌파 시 시그널 발생</p>
+        <p class="condition-desc" data-lang="ko">빨간 배경(하락 추세) + 2시간봉 추세 지표 과매도 구간 하향돌파 시 시그널 발생</p>
+        <p class="condition-desc" data-lang="en">Red background (downtrend) + 2H trend indicator breaks below oversold zone</p>
+        <p class="condition-desc" data-lang="zh">红色背景（下降趋势）+ 2小时趋势指标向下突破超卖区间时产生信号</p>
       </div>
     </div>
   </div>
 </div>
 
+<!-- 04 이용 조건 -->
 <div class="section" style="padding-top:0;">
   <div class="section-header">
-    <span class="section-num">03</span>
-    <h2 class="section-title">지표 받는 방법</h2>
-    <span class="section-en">HOW TO GET ACCESS</span>
+    <span class="section-num">04</span>
+    <h2 class="section-title">
+      <span data-lang-inline="ko">이용 조건</span>
+      <span data-lang-inline="en">Access Conditions</span>
+      <span data-lang-inline="zh">使用条件</span>
+    </h2>
+    <span class="section-en">ACCESS CONDITIONS</span>
+  </div>
+
+  <!-- 신규 신청 -->
+  <div style="margin-bottom:1px;">
+    <div style="background:var(--dark3); border:1px solid var(--border); border-bottom:none; padding:1rem 1.5rem;">
+      <p style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--gold);">
+        <span data-lang-inline="ko">STEP 1 · 첫 달 신규 신청 조건</span>
+        <span data-lang-inline="en">STEP 1 · FIRST MONTH — NEW APPLICATION</span>
+        <span data-lang-inline="zh">STEP 1 · 首月新申请条件</span>
+      </p>
+    </div>
+    <div class="info-grid" style="border-top:none; margin-bottom:0;">
+      <div class="info-box">
+        <div class="info-num" style="font-size:32px;">$200K</div>
+        <div class="info-label">
+          <span data-lang-inline="ko">BingX 누적 거래대금</span>
+          <span data-lang-inline="en">BingX Cumulative Volume</span>
+          <span data-lang-inline="zh">BingX累计交易额</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="info-num">30</div>
+        <div class="info-label">
+          <span data-lang-inline="ko">이용 기간 (일)</span>
+          <span data-lang-inline="en">Access Period (days)</span>
+          <span data-lang-inline="zh">使用天数</span>
+        </div>
+      </div>
+    </div>
+    <div class="condition-list" style="border-top:none;">
+      <div class="condition-item">
+        <div class="condition-dot" style="background:var(--gold);"></div>
+        <div>
+          <p class="condition-name">
+            <span data-lang-inline="ko">BingX 누적 거래대금 $200,000 달성</span>
+            <span data-lang-inline="en">Reach $200,000 in BingX Volume</span>
+            <span data-lang-inline="zh">BingX累计交易额达$200,000</span>
+          </p>
+          <span class="condition-name-en">FIRST MONTH CONDITION</span>
+          <p class="condition-desc" data-lang="ko">아래 링크를 통해 BingX에 신규 가입 후, 선물 거래 기준 누적 거래대금 $200,000을 달성하면 지표를 신청할 수 있습니다. 레버리지 포함 금액이며, 이 조건만 충족하면 누구나 첫 달 신청이 가능합니다.</p>
+          <p class="condition-desc" data-lang="en">Sign up for BingX via the link below and reach $200,000 in cumulative futures volume (leverage included). Anyone who meets this condition can apply for their first month — no ranking required.</p>
+          <p class="condition-desc" data-lang="zh">通过下方链接新注册BingX，期货累计交易额（含杠杆）达到$200,000即可申请指标。满足此条件的任何人均可申请首月使用——无需排名。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 갱신 신청 -->
+  <div style="margin-top:2rem;">
+    <div style="background:var(--dark3); border:1px solid var(--border); border-bottom:none; padding:1rem 1.5rem;">
+      <p style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--gold);">
+        <span data-lang-inline="ko">STEP 2 · 다음 달 갱신 조건</span>
+        <span data-lang-inline="en">STEP 2 · RENEWAL — NEXT MONTH</span>
+        <span data-lang-inline="zh">STEP 2 · 续期条件（次月起）</span>
+      </p>
+    </div>
+    <div class="info-grid" style="border-top:none; margin-bottom:0;">
+      <div class="info-box">
+        <div class="info-num">50</div>
+        <div class="info-label">
+          <span data-lang-inline="ko">최대 이용 인원</span>
+          <span data-lang-inline="en">Max Users</span>
+          <span data-lang-inline="zh">最多用户数</span>
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="info-num">TOP50</div>
+        <div class="info-label">
+          <span data-lang-inline="ko">거래량 순위 내 승인</span>
+          <span data-lang-inline="en">Top 50 Volume Ranking</span>
+          <span data-lang-inline="zh">交易量前50名</span>
+        </div>
+      </div>
+    </div>
+    <div class="condition-list" style="border-top:none;">
+      <div class="condition-item">
+        <div class="condition-dot" style="background:var(--gold);"></div>
+        <div>
+          <p class="condition-name">
+            <span data-lang-inline="ko">지표 이용자 거래량 순위 TOP 50 유지</span>
+            <span data-lang-inline="en">Maintain TOP 50 Volume Among Active Users</span>
+            <span data-lang-inline="zh">在活跃用户中保持交易量前50名</span>
+          </p>
+          <span class="condition-name-en">RENEWAL CONDITION</span>
+          <p class="condition-desc" data-lang="ko">계속 사용을 원하시면 다음 달 재신청을 하시면 됩니다. 단, 현재 지표를 이용 중인 사람들의 거래량 순위에서 상위 50위 안에 들어야 승인이 됩니다. 최대 이용 인원이 50명이기 때문에 거래량이 낮으면 승인이 거절될 수 있습니다.</p>
+          <p class="condition-desc" data-lang="en">To continue using the indicator, simply re-apply the following month. However, you must rank within the top 50 by trading volume among all current users. Since the maximum is 50 users, low volume may result in rejection.</p>
+          <p class="condition-desc" data-lang="zh">如需继续使用指标，下月重新申请即可。但您必须在所有当前用户中的交易量排名进入前50名。由于最多限50人，交易量低可能导致申请被拒。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- 05 신청 방법 -->
+<div class="section" style="padding-top:0;">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">
+      <span data-lang-inline="ko">지표 신청 방법</span>
+      <span data-lang-inline="en">How to Apply</span>
+      <span data-lang-inline="zh">如何申请</span>
+    </h2>
+    <span class="section-en">HOW TO APPLY</span>
   </div>
   <div class="steps-list">
     <div class="step-item">
       <div class="step-num">01</div>
-      <div class="step-content">
-        <p class="step-title">BingX 가입</p>
-        <p class="step-desc">아래 링크를 통해 BingX에 가입합니다. 반드시 링크를 통해 가입해야 조건이 인정됩니다.</p>
-        <span class="step-note">링크를 통한 가입 필수</span>
+      <div>
+        <p class="step-title"><span data-lang-inline="ko">BingX 가입</span><span data-lang-inline="en">Sign up for BingX</span><span data-lang-inline="zh">注册BingX</span></p>
+        <p class="step-desc" data-lang="ko">반드시 아래 링크를 통해 BingX에 가입해야 조건이 인정됩니다. 이미 가입된 계정은 인정되지 않습니다.</p>
+        <p class="step-desc" data-lang="en">You must sign up via the link below for your volume to be tracked. Existing accounts are not eligible.</p>
+        <p class="step-desc" data-lang="zh">必须通过下方链接注册BingX，交易量才能被记录。已有账户不符合条件。</p>
+        <a class="step-note" href="https://bingxdao.com/invite/ZS5ZJ3/" target="_blank">bingxdao.com/invite/ZS5ZJ3 →</a>
       </div>
     </div>
     <div class="step-item">
       <div class="step-num">02</div>
-      <div class="step-content">
-        <p class="step-title">누적 거래대금 $50,000 달성</p>
-        <p class="step-desc">선물 거래 기준이며 레버리지 포함 금액입니다. 소액으로도 빠르게 달성 가능합니다.</p>
-        <span class="step-note">선물 거래 레버리지 포함</span>
+      <div>
+        <p class="step-title"><span data-lang-inline="ko">누적 거래대금 $200,000 달성</span><span data-lang-inline="en">Reach $200,000 in Volume</span><span data-lang-inline="zh">累计交易额达$200,000</span></p>
+        <p class="step-desc" data-lang="ko">선물 거래 기준 레버리지 포함 누적 거래대금 $200,000을 달성합니다. 거래량 순위 50위 안에 들어야 승인이 가능합니다.</p>
+        <p class="step-desc" data-lang="en">Accumulate $200,000 in futures trading volume (leverage included). You must rank within the top 50 by volume to be approved.</p>
+        <p class="step-desc" data-lang="zh">期货交易累计交易额须达到$200,000（含杠杆）。须在交易量前50名内方可获批。</p>
+        <span class="step-note"><span data-lang-inline="ko">거래량 TOP 50 필수</span><span data-lang-inline="en">TOP 50 Volume Required</span><span data-lang-inline="zh">需进入交易量前50名</span></span>
       </div>
     </div>
     <div class="step-item">
       <div class="step-num">03</div>
-      <div class="step-content">
-        <p class="step-title">인스타그램 DM으로 UID 전송</p>
-        <p class="step-desc">거래 확인 후 트레이딩뷰 계정으로 지표를 30일간 공유해드립니다.</p>
-        <span class="step-note">트레이딩뷰 30일 공유</span>
+      <div>
+        <p class="step-title"><span data-lang-inline="ko">텔레그램으로 BingX UID 전송</span><span data-lang-inline="en">Send BingX UID via Telegram</span><span data-lang-inline="zh">通过Telegram发送BingX UID</span></p>
+        <p class="step-desc" data-lang="ko">조건 달성 후 아래 텔레그램으로 BingX UID를 전송해 주세요. 확인 후 트레이딩뷰 계정으로 30일 지표를 공유해드립니다.</p>
+        <p class="step-desc" data-lang="en">Once conditions are met, send your BingX UID to the Telegram below. After verification, the indicator will be shared to your TradingView for 30 days.</p>
+        <p class="step-desc" data-lang="zh">达成条件后，请将您的BingX UID发送至下方Telegram。核实后，指标将共享至您的TradingView账户30天。</p>
+        <a class="step-note" href="https://t.me/sckim4441" target="_blank">@sckim4441 Telegram →</a>
       </div>
     </div>
   </div>
-  <div style="margin-top:3rem; text-align:center;">
-    <a class="cta-btn" href="YOUR_BINGX_LINK" target="_blank">
-      <span>BingX 가입하러 가기 →</span>
+
+  <div class="tg-box">
+    <p class="tg-label">TELEGRAM · <span data-lang-inline="ko">지표 신청 및 문의</span><span data-lang-inline="en">Apply & Inquiries</span><span data-lang-inline="zh">申请与咨询</span></p>
+    <p class="tg-id">@sckim4441</p>
+    <p class="tg-desc" data-lang="ko">BingX UID를 텔레그램으로 전송하시면<br>거래량 확인 후 트레이딩뷰 30일 공유를 진행해드립니다</p>
+    <p class="tg-desc" data-lang="en">Send your BingX UID via Telegram.<br>After volume verification, we'll share the indicator to your TradingView for 30 days.</p>
+    <p class="tg-desc" data-lang="zh">通过Telegram发送您的BingX UID。<br>核实交易量后，我们将把指标共享至您的TradingView账户30天。</p>
+    <a class="tg-btn" href="https://t.me/sckim4441" target="_blank">
+      <span data-lang-inline="ko">텔레그램으로 신청하기 →</span>
+      <span data-lang-inline="en">Apply via Telegram →</span>
+      <span data-lang-inline="zh">通过Telegram申请 →</span>
     </a>
   </div>
 </div>
 
 <footer>
   <p class="footer-brand">AlphaEdge</p>
-  <p class="footer-text">© 2025 AlphaEdge · Market Compass Pro<br>본 지표는 투자 조언이 아니며, 모든 투자 결정은 본인 책임입니다.<br>This indicator is not financial advice. All trading decisions are your own responsibility.</p>
+  <p class="footer-text">© 2025 AlphaEdge · Market Compass Pro<br>
+    <span data-lang-inline="ko">본 지표는 투자 조언이 아니며, 모든 투자 결정은 본인 책임입니다.</span>
+    <span data-lang-inline="en">This indicator is not financial advice. All trading decisions are your own responsibility.</span>
+    <span data-lang-inline="zh">本指标不构成投资建议，所有交易决策由本人负责。</span>
+  </p>
 </footer>
 
+<script>
+function setLang(lang) {
+  document.body.className = 'lang-' + lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
 </body>
 </html>
