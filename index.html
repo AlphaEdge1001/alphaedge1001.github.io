@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Market Compass Pro | AlphaEdge</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --gold: #D4A843;
@@ -31,6 +31,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
+body.lang-ja { font-family: 'Noto Sans JP', sans-serif; }
 body::before {
   content: '';
   position: fixed;
@@ -84,10 +85,12 @@ body::before {
 body.lang-ko [data-lang="ko"] { display: block; }
 body.lang-en [data-lang="en"] { display: block; }
 body.lang-zh [data-lang="zh"] { display: block; }
+body.lang-ja [data-lang="ja"] { display: block; }
 [data-lang-inline] { display: none; }
 body.lang-ko [data-lang-inline="ko"] { display: inline; }
 body.lang-en [data-lang-inline="en"] { display: inline; }
 body.lang-zh [data-lang-inline="zh"] { display: inline; }
+body.lang-ja [data-lang-inline="ja"] { display: inline; }
 
 /* HERO */
 .hero {
@@ -350,6 +353,8 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
   <button class="lang-btn" onclick="setLang('en')">English</button>
   <div class="lang-sep"></div>
   <button class="lang-btn" onclick="setLang('zh')">中文</button>
+  <div class="lang-sep"></div>
+  <button class="lang-btn" onclick="setLang('ja')">日本語</button>
 </div>
 
 <!-- HERO -->
@@ -360,14 +365,17 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
   <p class="hero-sub" data-lang="ko">추세를 읽고, 진입을 잡고, 익절 타이밍을 포착하는<br>올인원 트레이딩 시그널 지표</p>
   <p class="hero-sub" data-lang="en">All-in-one trading signal indicator<br>for trend, entry & take-profit timing</p>
   <p class="hero-sub" data-lang="zh">一体化交易信号指标<br>精准捕捉趋势、入场与止盈时机</p>
+  <p class="hero-sub" data-lang="ja">トレンド・エントリー・利確タイミングを捉える<br>オールインワン取引シグナル指標</p>
 
   <div class="limit-badges">
     <span class="badge" data-lang-inline="ko">최대 50명 한정</span>
     <span class="badge" data-lang-inline="en">Max 50 Users</span>
     <span class="badge" data-lang-inline="zh">限50人</span>
+    <span class="badge" data-lang-inline="ja">最大50名限定</span>
     <span class="badge" data-lang-inline="ko">1개월 이용권</span>
     <span class="badge" data-lang-inline="en">30-Day Access</span>
     <span class="badge" data-lang-inline="zh">30天使用权</span>
+    <span class="badge" data-lang-inline="ja">30日間アクセス</span>
   </div>
 
   <div class="cta-wrap">
@@ -375,6 +383,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
       <span data-lang-inline="ko">BingX 가입하고 지표 받기 →</span>
       <span data-lang-inline="en">Join BingX & Get Indicator →</span>
       <span data-lang-inline="zh">注册BingX获取指标 →</span>
+      <span data-lang-inline="ja">BingXに登録して指標を受け取る →</span>
     </a>
   </div>
 </section>
@@ -389,6 +398,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
       <span data-lang-inline="ko">돈을 잃지 않는 원칙</span>
       <span data-lang-inline="en">The Golden Rule</span>
       <span data-lang-inline="zh">不亏损的原则</span>
+      <span data-lang-inline="ja">損失を出さない原則</span>
     </h2>
     <span class="section-en">THE GOLDEN RULE</span>
   </div>
@@ -398,55 +408,67 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
       <span data-lang-inline="ko">"배경색만 알아도<br>손실을 막을 수 있다"</span>
       <span data-lang-inline="en">"Know the background color,<br>prevent the loss"</span>
       <span data-lang-inline="zh">"只要读懂背景色<br>就能避免亏损"</span>
+      <span data-lang-inline="ja">"背景色を知るだけで<br>損失を防げる"</span>
     </p>
     <p class="desc" data-lang="ko">대부분의 트레이더가 손실을 보는 이유는 단 하나,<br>추세를 무시하고 역방향 포지션을 잡기 때문입니다.<br>Market Compass Pro는 배경색으로 지금 어떤 포지션만 쳐야 하는지를 알려줍니다.</p>
     <p class="desc" data-lang="en">Most traders lose money for one simple reason —<br>they ignore the trend and trade against it.<br>Market Compass Pro uses background color to tell you exactly which direction to trade.</p>
     <p class="desc" data-lang="zh">大多数交易者亏损的原因只有一个——<br>忽视趋势，逆势开仓。<br>Market Compass Pro通过背景色告诉您当前只能做哪个方向的仓位。</p>
+    <p class="desc" data-lang="ja">ほとんどのトレーダーが損失を出す理由はただ一つ——<br>トレンドを無視して逆方向のポジションを取ること。<br>Market Compass Proは背景色で今どの方向だけ取引すべきかを教えてくれます。</p>
   </div>
 
   <div class="zone-grid">
     <div class="zone-card bull">
-      <span class="zone-icon">BULL ZONE · <span data-lang-inline="ko">파란 배경</span><span data-lang-inline="en">Blue BG</span><span data-lang-inline="zh">蓝色背景</span></span>
+      <span class="zone-icon">BULL ZONE · <span data-lang-inline="ko">파란 배경</span><span data-lang-inline="en">Blue BG</span><span data-lang-inline="zh">蓝色背景</span><span data-lang-inline="ja">青い背景</span></span>
       <p class="zone-title">
         <span data-lang-inline="ko">롱만 치는 구간</span>
         <span data-lang-inline="en">Long Only Zone</span>
         <span data-lang-inline="zh">只做多区间</span>
+        <span data-lang-inline="ja">ロングのみのゾーン</span>
       </p>
       <p class="zone-rule" data-lang="ko"><span class="ok">✓ 롱 진입 가능</span></p>
       <p class="zone-rule" data-lang="en"><span class="ok">✓ Long Allowed</span></p>
       <p class="zone-rule" data-lang="zh"><span class="ok">✓ 可以做多</span></p>
+      <p class="zone-rule" data-lang="ja"><span class="ok">✓ ロング可能</span></p>
       <p class="zone-rule" data-lang="ko"><span class="no">✗ 숏 진입 금지</span></p>
       <p class="zone-rule" data-lang="en"><span class="no">✗ Short Forbidden</span></p>
       <p class="zone-rule" data-lang="zh"><span class="no">✗ 禁止做空</span></p>
+      <p class="zone-rule" data-lang="ja"><span class="no">✗ ショート禁止</span></p>
       <p class="zone-rule-text" data-lang="ko">파란 배경이 켜지는 순간, 시장은 상승 추세입니다. 이 구간에서는 오직 롱 포지션만 진입해야 합니다. 숏을 치고 싶은 충동이 와도 배경이 파랗다면 절대 금지입니다.</p>
       <p class="zone-rule-text" data-lang="en">When the blue background activates, the market is in an uptrend. Only long positions should be entered in this zone. No matter how tempting a short may look — if the background is blue, it's strictly forbidden.</p>
       <p class="zone-rule-text" data-lang="zh">当蓝色背景亮起时，市场处于上升趋势。此区间只能开多仓。无论做空的冲动多强——背景是蓝色时，绝对禁止做空。</p>
+      <p class="zone-rule-text" data-lang="ja">青い背景が点灯する瞬間、市場は上昇トレンドです。このゾーンではロングポジションのみ入ってください。ショートしたい衝動があっても、背景が青ければ絶対禁止です。</p>
       <div class="zone-warning">
         💡 <span data-lang-inline="ko">파란 배경 = 롱만, 숏은 쉬는 구간</span>
         <span data-lang-inline="en">Blue = Long only, rest from shorts</span>
         <span data-lang-inline="zh">蓝色 = 只做多，空仓休息</span>
+        <span data-lang-inline="ja">青 = ロングのみ、ショートは休む</span>
       </div>
     </div>
     <div class="zone-card bear">
-      <span class="zone-icon">BEAR ZONE · <span data-lang-inline="ko">빨간 배경</span><span data-lang-inline="en">Red BG</span><span data-lang-inline="zh">红色背景</span></span>
+      <span class="zone-icon">BEAR ZONE · <span data-lang-inline="ko">빨간 배경</span><span data-lang-inline="en">Red BG</span><span data-lang-inline="zh">红色背景</span><span data-lang-inline="ja">赤い背景</span></span>
       <p class="zone-title">
         <span data-lang-inline="ko">숏만 치는 구간</span>
         <span data-lang-inline="en">Short Only Zone</span>
         <span data-lang-inline="zh">只做空区间</span>
+        <span data-lang-inline="ja">ショートのみのゾーン</span>
       </p>
       <p class="zone-rule" data-lang="ko"><span class="ok">✓ 숏 진입 가능</span></p>
       <p class="zone-rule" data-lang="en"><span class="ok">✓ Short Allowed</span></p>
       <p class="zone-rule" data-lang="zh"><span class="ok">✓ 可以做空</span></p>
+      <p class="zone-rule" data-lang="ja"><span class="ok">✓ ショート可能</span></p>
       <p class="zone-rule" data-lang="ko"><span class="no">✗ 롱 진입 금지</span></p>
       <p class="zone-rule" data-lang="en"><span class="no">✗ Long Forbidden</span></p>
       <p class="zone-rule" data-lang="zh"><span class="no">✗ 禁止做多</span></p>
+      <p class="zone-rule" data-lang="ja"><span class="no">✗ ロング禁止</span></p>
       <p class="zone-rule-text" data-lang="ko">빨간 배경이 켜지는 순간, 시장은 하락 추세입니다. 이 구간에서는 오직 숏 포지션만 진입해야 합니다. 반등이 와도 배경이 빨갛다면 롱은 절대 금지입니다.</p>
       <p class="zone-rule-text" data-lang="en">When the red background activates, the market is in a downtrend. Only short positions should be entered in this zone. Even during a bounce — if the background is red, longs are strictly forbidden.</p>
       <p class="zone-rule-text" data-lang="zh">当红色背景亮起时，市场处于下降趋势。此区间只能开空仓。即使出现反弹——背景是红色时，绝对禁止做多。</p>
+      <p class="zone-rule-text" data-lang="ja">赤い背景が点灯する瞬間、市場は下降トレンドです。このゾーンではショートポジションのみ入ってください。反発があっても、背景が赤ければロングは絶対禁止です。</p>
       <div class="zone-warning">
         💡 <span data-lang-inline="ko">빨간 배경 = 숏만, 롱은 쉬는 구간</span>
         <span data-lang-inline="en">Red = Short only, rest from longs</span>
         <span data-lang-inline="zh">红色 = 只做空，多仓休息</span>
+        <span data-lang-inline="ja">赤 = ショートのみ、ロングは休む</span>
       </div>
     </div>
   </div>
@@ -457,10 +479,12 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
       <span data-lang-inline="ko">오렌지 점선 — 시장의 중심축</span>
       <span data-lang-inline="en">Orange Dashed Line — Market Axis</span>
       <span data-lang-inline="zh">橙色虚线 — 市场中轴线</span>
+      <span data-lang-inline="ja">オレンジ破線 — 市場の中心軸</span>
     </p>
     <p class="orange-line-desc" data-lang="ko">차트에 표시되는 오렌지색 점선은 시장의 무게중심입니다.<br>현재 가격이 이 선을 기준으로 어디에 있는지만 봐도 추세의 강도를 파악할 수 있습니다.</p>
     <p class="orange-line-desc" data-lang="en">The orange dashed line on the chart represents the market's center of gravity.<br>Simply knowing where the current price sits relative to this line reveals the strength of the trend.</p>
     <p class="orange-line-desc" data-lang="zh">图表上的橙色虚线代表市场的重心。<br>只需观察当前价格相对于这条线的位置，即可判断趋势强度。</p>
+    <p class="orange-line-desc" data-lang="ja">チャートに表示されるオレンジの破線は市場の重心です。<br>現在の価格がこの線に対してどこにあるかを見るだけで、トレンドの強度を把握できます。</p>
     <div class="orange-rules">
       <div class="orange-rule-item">
         <p class="rule-label">ABOVE LINE</p>
@@ -472,6 +496,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
         <p class="rule-sub" data-lang="ko">가격이 오렌지 라인 위에 있을수록 매수 세력이 강하고 상승 모멘텀이 살아있습니다. 롱 진입 시 더욱 유리한 환경입니다.</p>
         <p class="rule-sub" data-lang="en">The higher above the orange line, the stronger the buying pressure and upward momentum. This creates a more favorable environment for long entries.</p>
         <p class="rule-sub" data-lang="zh">价格越高于橙色线，买方力量越强，上涨动能越足。这为做多创造了更有利的环境。</p>
+        <p class="rule-sub" data-lang="ja">価格がオレンジラインより高いほど、買い勢力が強く上昇モメンタムが生きています。ロングエントリーに有利な環境です。</p>
       </div>
       <div class="orange-rule-item">
         <p class="rule-label">BELOW LINE</p>
@@ -483,13 +508,15 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
         <p class="rule-sub" data-lang="ko">가격이 오렌지 라인 아래에 있을수록 매도 세력이 강하고 하락 모멘텀이 살아있습니다. 숏 진입 시 더욱 유리한 환경입니다.</p>
         <p class="rule-sub" data-lang="en">The lower below the orange line, the stronger the selling pressure and downward momentum. This creates a more favorable environment for short entries.</p>
         <p class="rule-sub" data-lang="zh">价格越低于橙色线，卖方力量越强，下跌动能越足。这为做空创造了更有利的环境。</p>
+        <p class="rule-sub" data-lang="ja">価格がオレンジラインより低いほど、売り勢力が強く下落モメンタムが生きています。ショートエントリーに有利な環境です。</p>
       </div>
     </div>
     <div class="orange-caution">
-      <strong>⚠ <span data-lang-inline="ko">추세 전환 구간 주의</span><span data-lang-inline="en">Caution at Trend Reversals</span><span data-lang-inline="zh">趋势转换区间注意</span></strong><br>
+      <strong>⚠ <span data-lang-inline="ko">추세 전환 구간 주의</span><span data-lang-inline="en">Caution at Trend Reversals</span><span data-lang-inline="zh">趋势转换区间注意</span><span data-lang-inline="ja">トレンド転換ゾーン注意</span></strong><br>
       <span data-lang="ko">배경색이 바뀌는 추세 전환 시점에서는 오렌지 라인과 가격의 위치 관계가 일시적으로 맞지 않을 수 있습니다. 추세 전환 초입에는 포지션 크기를 줄이고, 배경색과 오렌지 라인이 모두 방향성을 확인해준 후 진입하는 것을 권장합니다.</span>
       <span data-lang="en">At trend reversal points where the background color changes, the relationship between the orange line and price may temporarily misalign. During early reversals, reduce position size and wait for both the background color and orange line to confirm direction before entering.</span>
       <span data-lang="zh">在背景色发生变化的趋势转换时点，橙色线与价格的位置关系可能暂时不一致。在趋势转换初期，建议减小仓位，等待背景色和橙色线均确认方向后再入场。</span>
+      <span data-lang="ja">背景色が変わるトレンド転換時点では、オレンジラインと価格の位置関係が一時的にずれることがあります。転換初期にはポジションサイズを減らし、背景色とオレンジラインの両方が方向性を確認してからエントリーすることをお勧めします。</span>
     </div>
   </div>
 
@@ -497,6 +524,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
     <p data-lang="ko"><strong>배경색</strong>으로 방향을 정하고,<br><strong>오렌지 라인</strong>으로 세력을 확인하고,<br><strong>시그널</strong>로 타이밍을 잡는다.<br><br>이 세 가지만 지켜도 불필요한 손실의 대부분을 막을 수 있습니다.</p>
     <p data-lang="en">Set your <strong>direction</strong> with the background color,<br>confirm <strong>momentum</strong> with the orange line,<br>and time your <strong>entry</strong> with the signal.<br><br>Following these three rules alone eliminates most unnecessary losses.</p>
     <p data-lang="zh">用<strong>背景色</strong>确定方向，<br>用<strong>橙色线</strong>确认力量，<br>用<strong>信号</strong>把握时机。<br><br>只要遵守这三条规则，就能避免大部分不必要的亏损。</p>
+    <p data-lang="ja"><strong>背景色</strong>で方向を決め、<br><strong>オレンジライン</strong>で勢力を確認し、<br><strong>シグナル</strong>でタイミングを取る。<br><br>この3つを守るだけで、不必要な損失のほとんどを防ぐことができます。</p>
   </div>
 </div>
 
@@ -508,41 +536,46 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
       <span data-lang-inline="ko">시그널 구성</span>
       <span data-lang-inline="en">Signal Overview</span>
       <span data-lang-inline="zh">信号构成</span>
+      <span data-lang-inline="ja">シグナル構成</span>
     </h2>
     <span class="section-en">SIGNAL OVERVIEW</span>
   </div>
   <div class="signal-grid">
     <div class="signal-card">
       <span class="signal-icon" style="color:#4ade80;">▲</span>
-      <p class="signal-name"><span data-lang-inline="ko">롱 진입</span><span data-lang-inline="en">Long Entry</span><span data-lang-inline="zh">做多入场</span></p>
+      <p class="signal-name"><span data-lang-inline="ko">롱 진입</span><span data-lang-inline="en">Long Entry</span><span data-lang-inline="zh">做多入场</span><span data-lang-inline="ja">ロングエントリー</span></p>
       <span class="signal-name-en">LONG ENTRY</span>
       <p class="signal-desc" data-lang="ko">파란 배경에서 최적의 매수 타이밍을 포착합니다</p>
       <p class="signal-desc" data-lang="en">Catches the best buy timing in the blue zone</p>
       <p class="signal-desc" data-lang="zh">在蓝色背景下捕捉最佳买入时机</p>
+      <p class="signal-desc" data-lang="ja">青いゾーンで最適な買いタイミングを捉えます</p>
     </div>
     <div class="signal-card">
       <span class="signal-icon" style="color:#f472b6;">◆</span>
-      <p class="signal-name"><span data-lang-inline="ko">숏 진입</span><span data-lang-inline="en">Short Entry</span><span data-lang-inline="zh">做空入场</span></p>
+      <p class="signal-name"><span data-lang-inline="ko">숏 진입</span><span data-lang-inline="en">Short Entry</span><span data-lang-inline="zh">做空入场</span><span data-lang-inline="ja">ショートエントリー</span></p>
       <span class="signal-name-en">SHORT ENTRY</span>
       <p class="signal-desc" data-lang="ko">빨간 배경에서 최적의 매도 타이밍을 포착합니다</p>
       <p class="signal-desc" data-lang="en">Catches the best sell timing in the red zone</p>
       <p class="signal-desc" data-lang="zh">在红色背景下捕捉最佳卖出时机</p>
+      <p class="signal-desc" data-lang="ja">赤いゾーンで最適な売りタイミングを捉えます</p>
     </div>
     <div class="signal-card">
       <span class="signal-icon" style="color:#facc15;">✕</span>
-      <p class="signal-name"><span data-lang-inline="ko">롱 익절</span><span data-lang-inline="en">Long TP</span><span data-lang-inline="zh">多仓止盈</span></p>
+      <p class="signal-name"><span data-lang-inline="ko">롱 익절</span><span data-lang-inline="en">Long TP</span><span data-lang-inline="zh">多仓止盈</span><span data-lang-inline="ja">ロング利確</span></p>
       <span class="signal-name-en">LONG TAKE PROFIT</span>
       <p class="signal-desc" data-lang="ko">롱 포지션의 최적 익절 타이밍을 알려줍니다</p>
       <p class="signal-desc" data-lang="en">Signals the optimal take-profit for long positions</p>
       <p class="signal-desc" data-lang="zh">提示多仓最佳止盈时机</p>
+      <p class="signal-desc" data-lang="ja">ロングポジションの最適な利確タイミングをお知らせします</p>
     </div>
     <div class="signal-card">
       <span class="signal-icon" style="color:#22d3ee;">✕</span>
-      <p class="signal-name"><span data-lang-inline="ko">숏 익절</span><span data-lang-inline="en">Short TP</span><span data-lang-inline="zh">空仓止盈</span></p>
+      <p class="signal-name"><span data-lang-inline="ko">숏 익절</span><span data-lang-inline="en">Short TP</span><span data-lang-inline="zh">空仓止盈</span><span data-lang-inline="ja">ショート利確</span></p>
       <span class="signal-name-en">SHORT TAKE PROFIT</span>
       <p class="signal-desc" data-lang="ko">숏 포지션의 최적 익절 타이밍을 알려줍니다</p>
       <p class="signal-desc" data-lang="en">Signals the optimal take-profit for short positions</p>
       <p class="signal-desc" data-lang="zh">提示空仓最佳止盈时机</p>
+      <p class="signal-desc" data-lang="ja">ショートポジションの最適な利確タイミングをお知らせします</p>
     </div>
   </div>
 </div>
@@ -555,6 +588,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
       <span data-lang-inline="ko">실제 차트 예시</span>
       <span data-lang-inline="en">Real Chart Examples</span>
       <span data-lang-inline="zh">实际图表示例</span>
+      <span data-lang-inline="ja">実際のチャート例</span>
     </h2>
     <span class="section-en">LIVE EXAMPLES</span>
   </div>
@@ -573,6 +607,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
         <p data-lang="ko">빨간 배경(하락)에서 파란 배경(상승)으로 전환되는 시점, 롱 진입 시그널(▲)이 발생하고 이후 롱 익절 시그널(✕ 노란색)이 연속으로 포착된 예시입니다. 오렌지 라인 위에서 롱 진입이 이루어져 더욱 유리한 환경이었습니다.</p>
         <p data-lang="en">An example where the background transitions from red (bear) to blue (bull), triggering long entry signals (▲) followed by a series of long take-profit signals (✕ yellow). Long entries were made above the orange line, providing a more favorable environment.</p>
         <p data-lang="zh">背景从红色（熊市）转为蓝色（牛市）时，触发做多入场信号（▲），随后连续出现多仓止盈信号（✕ 黄色）的示例。做多入场均在橙色线上方进行，环境更为有利。</p>
+      <p data-lang="ja">背景が赤（ベア）から青（ブル）に転換する際にロングエントリーシグナル（▲）が発生し、その後ロング利確シグナル（✕ 黄色）が連続して現れた例です。ロングエントリーはすべてオレンジラインの上で行われ、より有利な環境でした。</p>
       </div>
     </div>
 
@@ -589,6 +624,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
         <p data-lang="ko">파란 배경에서 롱 진입 후 빨간 배경으로 전환, 숏 익절 시그널(✕ 하늘색)과 숏 진입 시그널(◆ 핑크)이 발생한 예시입니다. 배경색 전환만 따라가도 방향을 바꿔 대응할 수 있습니다.</p>
         <p data-lang="en">An example of long entries during the blue zone, followed by a transition to red, triggering short take-profit (✕ cyan) and short entry signals (◆ pink). Simply following the background color allows you to switch directions effectively.</p>
         <p data-lang="zh">蓝色区间做多入场后，背景转为红色，触发空仓止盈信号（✕ 青色）和做空入场信号（◆ 粉色）的示例。只需跟随背景色，即可有效切换方向。</p>
+      <p data-lang="ja">青いゾーンでロングエントリー後、背景が赤に転換し、ショート利確シグナル（✕ シアン）とショートエントリーシグナル（◆ ピンク）が発生した例です。背景色に従うだけで方向転換に対応できます。</p>
       </div>
     </div>
 
@@ -604,6 +640,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
         <p data-lang="ko">빨간 배경에서 숏 진입(◆) 후 파란 배경으로 전환되며 롱 진입(▲) 시그널이 발생한 추세 전환 예시입니다. 오렌지 라인이 중심축 역할을 하며 전환 타이밍을 확인할 수 있습니다.</p>
         <p data-lang="en">A trend reversal example where short entries (◆) occur in the red zone, followed by a transition to blue triggering long entry signals (▲). The orange line acts as the central axis, confirming the reversal timing.</p>
         <p data-lang="zh">红色区间出现做空入场（◆）后，背景转为蓝色并触发做多入场信号（▲）的趋势转换示例。橙色线作为中轴线，帮助确认转换时机。</p>
+      <p data-lang="ja">赤いゾーンでショートエントリー（◆）後、青に転換してロングエントリーシグナル（▲）が発生したトレンド転換の例です。オレンジラインが中心軸として転換タイミングを確認します。</p>
       </div>
     </div>
 
@@ -619,6 +656,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
         <p data-lang="ko">빨간 배경에서 숏 진입(◆) 후 급락 구간에서 숏 익절 시그널(✕ 하늘색)이 연속으로 발생한 예시입니다. 하락 추세에서 숏만 치는 원칙을 지켰을 때 최대 수익을 낼 수 있음을 보여줍니다.</p>
         <p data-lang="en">An example of short entries (◆) in the red zone followed by a series of short take-profit signals (✕ cyan) during a sharp drop. This demonstrates the maximum profit potential when strictly following the short-only rule in a downtrend.</p>
         <p data-lang="zh">红色区间出现做空入场（◆）后，急跌区间连续出现空仓止盈信号（✕ 青色）的示例。展示了在下降趋势中严格遵守只做空原则时的最大盈利潜力。</p>
+      <p data-lang="ja">赤いゾーンでショートエントリー（◆）後、急落区間でショート利確シグナル（✕ シアン）が連続して発生した例です。下降トレンドでショートのみのルールを守ったときの最大利益の可能性を示しています。</p>
       </div>
     </div>
 
@@ -633,6 +671,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
       <span data-lang-inline="ko">시그널 조건</span>
       <span data-lang-inline="en">Signal Conditions</span>
       <span data-lang-inline="zh">信号条件</span>
+      <span data-lang-inline="ja">シグナル条件</span>
     </h2>
     <span class="section-en">SIGNAL CONDITIONS</span>
   </div>
@@ -645,6 +684,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
         <p class="condition-desc" data-lang="ko">파란 배경(상승 추세) + 5분봉 모멘텀 지표 과매도 구간 상향돌파 시 시그널 발생</p>
         <p class="condition-desc" data-lang="en">Blue background (uptrend) + 5-min momentum indicator breaks above oversold zone</p>
         <p class="condition-desc" data-lang="zh">蓝色背景（上升趋势）+ 5分钟动量指标向上突破超卖区间时产生信号</p>
+        <p class="condition-desc" data-lang="ja">青い背景（上昇トレンド）+ 5分足モメンタム指標が売られすぎゾーンを上抜け</p>
       </div>
     </div>
     <div class="condition-item">
@@ -655,6 +695,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
         <p class="condition-desc" data-lang="ko">빨간 배경(하락 추세) + 3분봉 모멘텀 지표 과매수 구간 상향돌파 시 시그널 발생</p>
         <p class="condition-desc" data-lang="en">Red background (downtrend) + 3-min momentum indicator breaks above overbought zone</p>
         <p class="condition-desc" data-lang="zh">红色背景（下降趋势）+ 3分钟动量指标向上突破超买区间时产生信号</p>
+        <p class="condition-desc" data-lang="ja">赤い背景（下降トレンド）+ 3分足モメンタム指標が買われすぎゾーンを上抜け</p>
       </div>
     </div>
     <div class="condition-item">
@@ -665,6 +706,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
         <p class="condition-desc" data-lang="ko">파란 배경(상승 추세) + 2시간봉 추세 지표 과매수 구간 상향돌파 시 시그널 발생</p>
         <p class="condition-desc" data-lang="en">Blue background (uptrend) + 2H trend indicator breaks above overbought zone</p>
         <p class="condition-desc" data-lang="zh">蓝色背景（上升趋势）+ 2小时趋势指标向上突破超买区间时产生信号</p>
+        <p class="condition-desc" data-lang="ja">青い背景（上昇トレンド）+ 2時間足トレンド指標が買われすぎゾーンを上抜け</p>
       </div>
     </div>
     <div class="condition-item">
@@ -675,6 +717,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
         <p class="condition-desc" data-lang="ko">빨간 배경(하락 추세) + 2시간봉 추세 지표 과매도 구간 하향돌파 시 시그널 발생</p>
         <p class="condition-desc" data-lang="en">Red background (downtrend) + 2H trend indicator breaks below oversold zone</p>
         <p class="condition-desc" data-lang="zh">红色背景（下降趋势）+ 2小时趋势指标向下突破超卖区间时产生信号</p>
+        <p class="condition-desc" data-lang="ja">赤い背景（下降トレンド）+ 2時間足トレンド指標が売られすぎゾーンを下抜け</p>
       </div>
     </div>
   </div>
@@ -688,6 +731,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
       <span data-lang-inline="ko">이용 조건</span>
       <span data-lang-inline="en">Access Conditions</span>
       <span data-lang-inline="zh">使用条件</span>
+      <span data-lang-inline="ja">利用条件</span>
     </h2>
     <span class="section-en">ACCESS CONDITIONS</span>
   </div>
@@ -708,6 +752,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
           <span data-lang-inline="ko">BingX 누적 거래대금</span>
           <span data-lang-inline="en">BingX Cumulative Volume</span>
           <span data-lang-inline="zh">BingX累计交易额</span>
+          <span data-lang-inline="ja">BingX累計取引額</span>
         </div>
       </div>
       <div class="info-box">
@@ -716,6 +761,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
           <span data-lang-inline="ko">이용 기간 (일)</span>
           <span data-lang-inline="en">Access Period (days)</span>
           <span data-lang-inline="zh">使用天数</span>
+          <span data-lang-inline="ja">利用日数</span>
         </div>
       </div>
     </div>
@@ -727,11 +773,13 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
             <span data-lang-inline="ko">BingX 누적 거래대금 $200,000 달성</span>
             <span data-lang-inline="en">Reach $200,000 in BingX Volume</span>
             <span data-lang-inline="zh">BingX累计交易额达$200,000</span>
+          <span data-lang-inline="ja">BingX取引額$200,000達成</span>
           </p>
           <span class="condition-name-en">FIRST MONTH CONDITION</span>
           <p class="condition-desc" data-lang="ko">아래 링크를 통해 BingX에 신규 가입 후, 선물 거래 기준 누적 거래대금 $200,000을 달성하면 지표를 신청할 수 있습니다. 레버리지 포함 금액이며, 이 조건만 충족하면 누구나 첫 달 신청이 가능합니다.</p>
           <p class="condition-desc" data-lang="en">Sign up for BingX via the link below and reach $200,000 in cumulative futures volume (leverage included). Anyone who meets this condition can apply for their first month — no ranking required.</p>
           <p class="condition-desc" data-lang="zh">通过下方链接新注册BingX，期货累计交易额（含杠杆）达到$200,000即可申请指标。满足此条件的任何人均可申请首月使用——无需排名。</p>
+          <p class="condition-desc" data-lang="ja">下のリンクから新規BingX登録後、先物取引累計額（レバレッジ込み）$200,000を達成すれば誰でも初月申請可能です。ランキング不要。</p>
         </div>
       </div>
     </div>
@@ -753,6 +801,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
           <span data-lang-inline="ko">최대 이용 인원</span>
           <span data-lang-inline="en">Max Users</span>
           <span data-lang-inline="zh">最多用户数</span>
+          <span data-lang-inline="ja">最大ユーザー数</span>
         </div>
       </div>
       <div class="info-box">
@@ -761,6 +810,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
           <span data-lang-inline="ko">거래량 순위 내 승인</span>
           <span data-lang-inline="en">Top 50 Volume Ranking</span>
           <span data-lang-inline="zh">交易量前50名</span>
+          <span data-lang-inline="ja">取引量TOP50</span>
         </div>
       </div>
     </div>
@@ -772,11 +822,13 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
             <span data-lang-inline="ko">지표 이용자 거래량 순위 TOP 50 유지</span>
             <span data-lang-inline="en">Maintain TOP 50 Volume Among Active Users</span>
             <span data-lang-inline="zh">在活跃用户中保持交易量前50名</span>
+          <span data-lang-inline="ja">アクティブユーザー内取引量TOP50維持</span>
           </p>
           <span class="condition-name-en">RENEWAL CONDITION</span>
           <p class="condition-desc" data-lang="ko">계속 사용을 원하시면 다음 달 재신청을 하시면 됩니다. 단, 현재 지표를 이용 중인 사람들의 거래량 순위에서 상위 50위 안에 들어야 승인이 됩니다. 최대 이용 인원이 50명이기 때문에 거래량이 낮으면 승인이 거절될 수 있습니다.</p>
           <p class="condition-desc" data-lang="en">To continue using the indicator, simply re-apply the following month. However, you must rank within the top 50 by trading volume among all current users. Since the maximum is 50 users, low volume may result in rejection.</p>
           <p class="condition-desc" data-lang="zh">如需继续使用指标，下月重新申请即可。但您必须在所有当前用户中的交易量排名进入前50名。由于最多限50人，交易量低可能导致申请被拒。</p>
+          <p class="condition-desc" data-lang="ja">継続使用希望の場合は翌月再申請してください。ただし、現在の全ユーザー中の取引量ランキングで上位50位以内に入る必要があります。最大50名のため、取引量が低いと却下される場合があります。</p>
         </div>
       </div>
     </div>
@@ -792,6 +844,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
       <span data-lang-inline="ko">지표 신청 방법</span>
       <span data-lang-inline="en">How to Apply</span>
       <span data-lang-inline="zh">如何申请</span>
+      <span data-lang-inline="ja">申請方法</span>
     </h2>
     <span class="section-en">HOW TO APPLY</span>
   </div>
@@ -799,45 +852,50 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
     <div class="step-item">
       <div class="step-num">01</div>
       <div>
-        <p class="step-title"><span data-lang-inline="ko">BingX 가입</span><span data-lang-inline="en">Sign up for BingX</span><span data-lang-inline="zh">注册BingX</span></p>
+        <p class="step-title"><span data-lang-inline="ko">BingX 가입</span><span data-lang-inline="en">Sign up for BingX</span><span data-lang-inline="zh">注册BingX</span><span data-lang-inline="ja">BingXに登録</span></p>
         <p class="step-desc" data-lang="ko">반드시 아래 링크를 통해 BingX에 가입해야 조건이 인정됩니다. 이미 가입된 계정은 인정되지 않습니다.</p>
         <p class="step-desc" data-lang="en">You must sign up via the link below for your volume to be tracked. Existing accounts are not eligible.</p>
         <p class="step-desc" data-lang="zh">必须通过下方链接注册BingX，交易量才能被记录。已有账户不符合条件。</p>
+        <p class="step-desc" data-lang="ja">取引量を記録するには、必ず下のリンクからBingXに登録してください。既存のアカウントは対象外です。</p>
         <a class="step-note" href="https://bingxdao.com/invite/ZS5ZJ3/" target="_blank">bingxdao.com/invite/ZS5ZJ3 →</a>
       </div>
     </div>
     <div class="step-item">
       <div class="step-num">02</div>
       <div>
-        <p class="step-title"><span data-lang-inline="ko">누적 거래대금 $200,000 달성</span><span data-lang-inline="en">Reach $200,000 in Volume</span><span data-lang-inline="zh">累计交易额达$200,000</span></p>
+        <p class="step-title"><span data-lang-inline="ko">누적 거래대금 $200,000 달성</span><span data-lang-inline="en">Reach $200,000 in Volume</span><span data-lang-inline="zh">累计交易额达$200,000</span><span data-lang-inline="ja">$200,000の取引量を達成</span></p>
         <p class="step-desc" data-lang="ko">선물 거래 기준 레버리지 포함 누적 거래대금 $200,000을 달성합니다. 거래량 순위 50위 안에 들어야 승인이 가능합니다.</p>
         <p class="step-desc" data-lang="en">Accumulate $200,000 in futures trading volume (leverage included). You must rank within the top 50 by volume to be approved.</p>
         <p class="step-desc" data-lang="zh">期货交易累计交易额须达到$200,000（含杠杆）。须在交易量前50名内方可获批。</p>
-        <span class="step-note"><span data-lang-inline="ko">거래량 TOP 50 필수</span><span data-lang-inline="en">TOP 50 Volume Required</span><span data-lang-inline="zh">需进入交易量前50名</span></span>
+        <p class="step-desc" data-lang="ja">先物取引の累計取引額（レバレッジ込み）$200,000を達成してください。取引量上位50位以内に入る必要があります。</p>
+        <span class="step-note"><span data-lang-inline="ko">거래량 TOP 50 필수</span><span data-lang-inline="en">TOP 50 Volume Required</span><span data-lang-inline="zh">需进入交易量前50名</span><span data-lang-inline="ja">取引量TOP50必須</span></span>
       </div>
     </div>
     <div class="step-item">
       <div class="step-num">03</div>
       <div>
-        <p class="step-title"><span data-lang-inline="ko">텔레그램으로 BingX UID 전송</span><span data-lang-inline="en">Send BingX UID via Telegram</span><span data-lang-inline="zh">通过Telegram发送BingX UID</span></p>
+        <p class="step-title"><span data-lang-inline="ko">텔레그램으로 BingX UID 전송</span><span data-lang-inline="en">Send BingX UID via Telegram</span><span data-lang-inline="zh">通过Telegram发送BingX UID</span><span data-lang-inline="ja">TelegramでBingX UIDを送信</span></p>
         <p class="step-desc" data-lang="ko">조건 달성 후 아래 텔레그램으로 BingX UID를 전송해 주세요. 확인 후 트레이딩뷰 계정으로 30일 지표를 공유해드립니다.</p>
         <p class="step-desc" data-lang="en">Once conditions are met, send your BingX UID to the Telegram below. After verification, the indicator will be shared to your TradingView for 30 days.</p>
         <p class="step-desc" data-lang="zh">达成条件后，请将您的BingX UID发送至下方Telegram。核实后，指标将共享至您的TradingView账户30天。</p>
+        <p class="step-desc" data-lang="ja">条件達成後、下記TelegramにBingX UIDを送信してください。確認後、TradingViewアカウントに30日間指標を共有します。</p>
         <a class="step-note" href="https://t.me/sckim4441" target="_blank">@sckim4441 Telegram →</a>
       </div>
     </div>
   </div>
 
   <div class="tg-box">
-    <p class="tg-label">TELEGRAM · <span data-lang-inline="ko">지표 신청 및 문의</span><span data-lang-inline="en">Apply & Inquiries</span><span data-lang-inline="zh">申请与咨询</span></p>
+    <p class="tg-label">TELEGRAM · <span data-lang-inline="ko">지표 신청 및 문의</span><span data-lang-inline="en">Apply & Inquiries</span><span data-lang-inline="zh">申请与咨询</span><span data-lang-inline="ja">申請・お問い合わせ</span></p>
     <p class="tg-id">@sckim4441</p>
     <p class="tg-desc" data-lang="ko">BingX UID를 텔레그램으로 전송하시면<br>거래량 확인 후 트레이딩뷰 30일 공유를 진행해드립니다</p>
     <p class="tg-desc" data-lang="en">Send your BingX UID via Telegram.<br>After volume verification, we'll share the indicator to your TradingView for 30 days.</p>
     <p class="tg-desc" data-lang="zh">通过Telegram发送您的BingX UID。<br>核实交易量后，我们将把指标共享至您的TradingView账户30天。</p>
+    <p class="tg-desc" data-lang="ja">TelegramでBingX UIDを送信してください。<br>取引量確認後、TradingViewアカウントに30日間指標を共有します。</p>
     <a class="tg-btn" href="https://t.me/sckim4441" target="_blank">
       <span data-lang-inline="ko">텔레그램으로 신청하기 →</span>
       <span data-lang-inline="en">Apply via Telegram →</span>
       <span data-lang-inline="zh">通过Telegram申请 →</span>
+      <span data-lang-inline="ja">Telegramで申請する →</span>
     </a>
   </div>
 </div>
@@ -848,6 +906,7 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
     <span data-lang-inline="ko">본 지표는 투자 조언이 아니며, 모든 투자 결정은 본인 책임입니다.</span>
     <span data-lang-inline="en">This indicator is not financial advice. All trading decisions are your own responsibility.</span>
     <span data-lang-inline="zh">本指标不构成投资建议，所有交易决策由本人负责。</span>
+    <span data-lang-inline="ja">本指標は投資アドバイスではありません。すべての取引判断はご自身の責任で行ってください。</span>
   </p>
 </footer>
 
