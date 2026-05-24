@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Compass Pro | AlphaEdge</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+KR:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C96A;
+  --dark: #0A0A0A;
+  --dark2: #111111;
+  --dark3: #1A1A1A;
+  --border: rgba(201,168,76,0.25);
+  --text: #F0EDE6;
+  --muted: #888880;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* noise overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  border-bottom: 1px solid var(--border);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: var(--gold);
+}
+.brand-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 12vw, 120px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.4s;
+}
+.hero-title span { color: var(--gold); }
+.hero-sub {
+  font-size: clamp(13px, 2vw, 16px);
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.6s;
+}
+.hero-en {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: rgba(201,168,76,0.5);
+  letter-spacing: 0.1em;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.7s;
+}
+.cta-wrap {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.9s;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 16px 48px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s;
+}
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold);
+  transform: translateX(-101%);
+  transition: transform 0.3s ease;
+}
+.cta-btn:hover { color: var(--dark); }
+.cta-btn:hover::before { transform: translateX(0); }
+.cta-btn span { position: relative; z-index: 1; }
+
+/* DIVIDER LINE */
+.line-divider {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  margin: 0 auto;
+}
+
+/* SIGNALS SECTION */
+.section {
+  padding: 6rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+}
+.section-title {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+}
+.section-en {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  margin-left: auto;
+}
+
+/* SIGNAL CARDS */
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.signal-card {
+  background: var(--dark2);
+  padding: 2rem 1.5rem;
+  transition: background 0.2s;
+}
+.signal-card:hover { background: var(--dark3); }
+.signal-icon {
+  font-size: 24px;
+  margin-bottom: 1rem;
+  display: block;
+}
+.signal-name {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+.signal-name-en {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  display: block;
+}
+.signal-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* CONDITIONS */
+.condition-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.condition-item {
+  background: var(--dark2);
+  padding: 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  transition: background 0.2s;
+}
+.condition-item:hover { background: var(--dark3); }
+.condition-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+.condition-body {}
+.condition-name {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+.condition-name-en {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+.condition-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+/* STEPS */
+.steps-list { display: flex; flex-direction: column; gap: 0; }
+.step-item {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.step-item:last-child { border-bottom: none; }
+.step-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--gold);
+  line-height: 1;
+  opacity: 0.4;
+}
+.step-content {}
+.step-title { font-size: 16px; font-weight: 500; margin-bottom: 0.4rem; color: var(--text); }
+.step-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+.step-note {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,76,0.3);
+  padding: 4px 10px;
+  letter-spacing: 0.05em;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+.footer-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.footer-text { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .section { padding: 4rem 1.25rem; }
+  .signal-grid { grid-template-columns: 1fr 1fr; }
+  .step-item { grid-template-columns: 40px 1fr; gap: 1rem; }
+  .step-num { font-size: 36px; }
+  .section-en { display: none; }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <p class="brand-tag">AlphaEdge · Exclusive Indicator</p>
+  <h1 class="hero-title">Market<br><span>Compass</span><br>Pro</h1>
+  <p class="hero-sub">추세를 읽고, 진입을 잡고, 익절 타이밍을 포착하는<br>올인원 트레이딩 시그널 지표</p>
+  <p class="hero-en">All-in-one trend · entry · take-profit signal indicator</p>
+  <div class="cta-wrap">
+    <a class="cta-btn" href="YOUR_BINGX_LINK" target="_blank">
+      <span>BingX 가입하고 지표 받기 →</span>
+    </a>
+  </div>
+</section>
+
+<div class="line-divider"></div>
+
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">시그널 구성</h2>
+    <span class="section-en">SIGNAL OVERVIEW</span>
+  </div>
+  <div class="signal-grid">
+    <div class="signal-card">
+      <span class="signal-icon" style="color:#4ade80;">▲</span>
+      <p class="signal-name">롱 진입</p>
+      <span class="signal-name-en">LONG ENTRY</span>
+      <p class="signal-desc">상승 추세 확인 후 최적의 매수 타이밍을 포착합니다</p>
+    </div>
+    <div class="signal-card">
+      <span class="signal-icon" style="color:#f472b6;">◆</span>
+      <p class="signal-name">숏 진입</p>
+      <span class="signal-name-en">SHORT ENTRY</span>
+      <p class="signal-desc">하락 추세 확인 후 최적의 매도 타이밍을 포착합니다</p>
+    </div>
+    <div class="signal-card">
+      <span class="signal-icon" style="color:#facc15;">✕</span>
+      <p class="signal-name">롱 익절</p>
+      <span class="signal-name-en">LONG TAKE PROFIT</span>
+      <p class="signal-desc">롱 포지션의 최적 익절 타이밍을 알려줍니다</p>
+    </div>
+    <div class="signal-card">
+      <span class="signal-icon" style="color:#22d3ee;">✕</span>
+      <p class="signal-name">숏 익절</p>
+      <span class="signal-name-en">SHORT TAKE PROFIT</span>
+      <p class="signal-desc">숏 포지션의 최적 익절 타이밍을 알려줍니다</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0;">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">시그널 조건</h2>
+    <span class="section-en">SIGNAL CONDITIONS</span>
+  </div>
+  <div class="condition-list">
+    <div class="condition-item">
+      <div class="condition-dot" style="background:#4ade80;"></div>
+      <div class="condition-body">
+        <p class="condition-name">롱 진입</p>
+        <span class="condition-name-en">LONG ENTRY</span>
+        <p class="condition-desc">상승 배경(파랑) + 5분봉 모멘텀 지표 과매도 구간 상향돌파 시 시그널 발생</p>
+      </div>
+    </div>
+    <div class="condition-item">
+      <div class="condition-dot" style="background:#f472b6;"></div>
+      <div class="condition-body">
+        <p class="condition-name">숏 진입</p>
+        <span class="condition-name-en">SHORT ENTRY</span>
+        <p class="condition-desc">하락 배경(빨강) + 3분봉 모멘텀 지표 과매수 구간 상향돌파 시 시그널 발생</p>
+      </div>
+    </div>
+    <div class="condition-item">
+      <div class="condition-dot" style="background:#facc15;"></div>
+      <div class="condition-body">
+        <p class="condition-name">롱 익절</p>
+        <span class="condition-name-en">LONG TAKE PROFIT</span>
+        <p class="condition-desc">상승 배경(파랑) + 2시간봉 추세 지표 과매수 구간 상향돌파 시 시그널 발생</p>
+      </div>
+    </div>
+    <div class="condition-item">
+      <div class="condition-dot" style="background:#22d3ee;"></div>
+      <div class="condition-body">
+        <p class="condition-name">숏 익절</p>
+        <span class="condition-name-en">SHORT TAKE PROFIT</span>
+        <p class="condition-desc">하락 배경(빨강) + 2시간봉 추세 지표 과매도 구간 하향돌파 시 시그널 발생</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="padding-top:0;">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">지표 받는 방법</h2>
+    <span class="section-en">HOW TO GET ACCESS</span>
+  </div>
+  <div class="steps-list">
+    <div class="step-item">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <p class="step-title">BingX 가입</p>
+        <p class="step-desc">아래 링크를 통해 BingX에 가입합니다. 반드시 링크를 통해 가입해야 조건이 인정됩니다.</p>
+        <span class="step-note">링크를 통한 가입 필수</span>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <p class="step-title">누적 거래대금 $50,000 달성</p>
+        <p class="step-desc">선물 거래 기준이며 레버리지 포함 금액입니다. 소액으로도 빠르게 달성 가능합니다.</p>
+        <span class="step-note">선물 거래 레버리지 포함</span>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <p class="step-title">인스타그램 DM으로 UID 전송</p>
+        <p class="step-desc">거래 확인 후 트레이딩뷰 계정으로 지표를 30일간 공유해드립니다.</p>
+        <span class="step-note">트레이딩뷰 30일 공유</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:3rem; text-align:center;">
+    <a class="cta-btn" href="YOUR_BINGX_LINK" target="_blank">
+      <span>BingX 가입하러 가기 →</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-brand">AlphaEdge</p>
+  <p class="footer-text">© 2025 AlphaEdge · Market Compass Pro<br>본 지표는 투자 조언이 아니며, 모든 투자 결정은 본인 책임입니다.<br>This indicator is not financial advice. All trading decisions are your own responsibility.</p>
+</footer>
+
+</body>
+</html>
