@@ -324,7 +324,39 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
 .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.75rem; }
 .footer-text { font-size: 12px; color: var(--muted); line-height: 1.9; font-weight: 300; }
 
-/* CHART EXAMPLES */
+/* PLAN GRID */
+.plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: var(--dark4); margin-bottom: 0; }
+.plan-card { display: flex; flex-direction: column; overflow: hidden; }
+.plan-card.plan-a { border: 1px solid rgba(212,168,67,0.4); }
+.plan-card.plan-b { border: 1px solid rgba(99,179,237,0.4); }
+.plan-header { padding: 2rem 2rem 1.5rem; text-align: center; position: relative; }
+.plan-card.plan-a .plan-header { background: rgba(212,168,67,0.08); border-bottom: 1px solid rgba(212,168,67,0.2); }
+.plan-card.plan-b .plan-header { background: rgba(99,179,237,0.08); border-bottom: 1px solid rgba(99,179,237,0.2); }
+.plan-tag { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.3em; margin-bottom: 1rem; font-weight: 700; }
+.plan-card.plan-a .plan-tag { color: var(--gold); }
+.plan-card.plan-b .plan-tag { color: #63b3ed; }
+.plan-price { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; margin-bottom: 0.5rem; }
+.plan-card.plan-a .plan-price { color: var(--gold); }
+.plan-card.plan-b .plan-price { color: #63b3ed; }
+.plan-period { font-size: 13px; color: var(--text-sub); font-weight: 300; }
+.plan-body { padding: 1.75rem 2rem; display: flex; flex-direction: column; gap: 1.25rem; flex: 1; background: var(--dark2); }
+.plan-condition { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+.plan-condition-num { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.plan-card.plan-a .plan-condition-num { background: rgba(212,168,67,0.15); color: var(--gold); border: 1px solid rgba(212,168,67,0.3); }
+.plan-card.plan-b .plan-condition-num { background: rgba(99,179,237,0.15); color: #63b3ed; border: 1px solid rgba(99,179,237,0.3); }
+.plan-condition-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+.plan-condition-desc { font-size: 12px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+.plan-btn { display: block; text-align: center; margin-top: auto; padding: 14px; font-family: 'Space Mono', monospace; font-size: 12px; letter-spacing: 0.1em; text-decoration: none; position: relative; overflow: hidden; transition: color 0.3s; }
+.plan-btn::before { content: ''; position: absolute; inset: 0; transform: translateX(-101%); transition: transform 0.3s ease; }
+.plan-btn:hover::before { transform: translateX(0); }
+.plan-btn span { position: relative; z-index: 1; }
+.plan-btn-a { border: 1px solid var(--gold); color: var(--gold); }
+.plan-btn-a::before { background: var(--gold); }
+.plan-btn-a:hover { color: var(--dark); }
+.plan-btn-b { border: 1px solid #63b3ed; color: #63b3ed; }
+.plan-btn-b::before { background: #63b3ed; }
+.plan-btn-b:hover { color: var(--dark); }
+@media (max-width: 600px) { .plan-grid { grid-template-columns: 1fr; } }
 .chart-list { display: flex; flex-direction: column; gap: 3rem; }
 .chart-item { border: 1px solid var(--border); background: var(--dark2); overflow: hidden; }
 .chart-badges { display: flex; gap: 8px; flex-wrap: wrap; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); background: var(--dark3); }
@@ -736,113 +768,175 @@ footer { border-top: 1px solid var(--border); padding: 3.5rem 2rem; text-align: 
   <div class="section-header">
     <span class="section-num">04</span>
     <h2 class="section-title">
-      <span data-lang-inline="ko">이용 조건</span>
-      <span data-lang-inline="en">Access Conditions</span>
-      <span data-lang-inline="zh">使用条件</span>
-      <span data-lang-inline="ja">利用条件</span>
+      <span data-lang-inline="ko">이용 플랜</span>
+      <span data-lang-inline="en">Access Plans</span>
+      <span data-lang-inline="zh">使用方案</span>
+      <span data-lang-inline="ja">利用プラン</span>
     </h2>
-    <span class="section-en">ACCESS CONDITIONS</span>
+    <span class="section-en">ACCESS PLANS</span>
   </div>
 
-  <!-- 신규 신청 -->
-  <div style="margin-bottom:1px;">
-    <div style="background:var(--dark3); border:1px solid var(--border); border-bottom:none; padding:1rem 1.5rem;">
-      <p style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--gold);">
-        <span data-lang-inline="ko">STEP 1 · 첫 달 신규 신청 조건</span>
-        <span data-lang-inline="en">STEP 1 · FIRST MONTH — NEW APPLICATION</span>
-        <span data-lang-inline="zh">STEP 1 · 首月新申请条件</span>
-      </p>
-    </div>
-    <div class="info-grid" style="border-top:none; margin-bottom:0;">
-      <div class="info-box">
-        <div class="info-num" style="font-size:32px;">$200K</div>
-        <div class="info-label">
-          <span data-lang-inline="ko">BingX 누적 거래대금</span>
-          <span data-lang-inline="en">BingX Cumulative Volume</span>
-          <span data-lang-inline="zh">BingX累计交易额</span>
-          <span data-lang-inline="ja">BingX累計取引額</span>
-        </div>
+  <!-- 플랜 그리드 -->
+  <div class="plan-grid">
+
+    <!-- PLAN A -->
+    <div class="plan-card plan-a">
+      <div class="plan-header">
+        <p class="plan-tag">PLAN A</p>
+        <p class="plan-price">
+          <span data-lang-inline="ko">무료</span>
+          <span data-lang-inline="en">FREE</span>
+          <span data-lang-inline="zh">免费</span>
+          <span data-lang-inline="ja">無料</span>
+        </p>
+        <p class="plan-period">
+          <span data-lang-inline="ko">30일 이용권</span>
+          <span data-lang-inline="en">30-Day Access</span>
+          <span data-lang-inline="zh">30天使用权</span>
+          <span data-lang-inline="ja">30日間アクセス</span>
+        </p>
       </div>
-      <div class="info-box">
-        <div class="info-num">30</div>
-        <div class="info-label">
-          <span data-lang-inline="ko">이용 기간 (일)</span>
-          <span data-lang-inline="en">Access Period (days)</span>
-          <span data-lang-inline="zh">使用天数</span>
-          <span data-lang-inline="ja">利用日数</span>
+      <div class="plan-body">
+        <div class="plan-condition">
+          <span class="plan-condition-num">01</span>
+          <div>
+            <p class="plan-condition-title">
+              <span data-lang-inline="ko">BingX 신규 가입</span>
+              <span data-lang-inline="en">Sign up for BingX</span>
+              <span data-lang-inline="zh">注册BingX</span>
+              <span data-lang-inline="ja">BingX新規登録</span>
+            </p>
+            <p class="plan-condition-desc" data-lang="ko">반드시 아래 링크를 통해 가입해야 합니다</p>
+            <p class="plan-condition-desc" data-lang="en">Must sign up via the link below</p>
+            <p class="plan-condition-desc" data-lang="zh">必须通过下方链接注册</p>
+            <p class="plan-condition-desc" data-lang="ja">必ず下のリンクから登録してください</p>
+          </div>
         </div>
+        <div class="plan-condition">
+          <span class="plan-condition-num">02</span>
+          <div>
+            <p class="plan-condition-title">
+              <span data-lang-inline="ko">누적 거래대금 $200,000 달성</span>
+              <span data-lang-inline="en">Reach $200,000 in Volume</span>
+              <span data-lang-inline="zh">累计交易额达$200,000</span>
+              <span data-lang-inline="ja">累計取引額$200,000達成</span>
+            </p>
+            <p class="plan-condition-desc" data-lang="ko">선물 거래 기준, 레버리지 포함</p>
+            <p class="plan-condition-desc" data-lang="en">Futures trading, leverage included</p>
+            <p class="plan-condition-desc" data-lang="zh">期货交易，含杠杆</p>
+            <p class="plan-condition-desc" data-lang="ja">先物取引、レバレッジ込み</p>
+          </div>
+        </div>
+        <div class="plan-condition">
+          <span class="plan-condition-num">03</span>
+          <div>
+            <p class="plan-condition-title">
+              <span data-lang-inline="ko">텔레그램으로 UID 전송</span>
+              <span data-lang-inline="en">Send UID via Telegram</span>
+              <span data-lang-inline="zh">通过Telegram发送UID</span>
+              <span data-lang-inline="ja">TelegramでUID送信</span>
+            </p>
+            <p class="plan-condition-desc" data-lang="ko">확인 후 트레이딩뷰 30일 공유</p>
+            <p class="plan-condition-desc" data-lang="en">Verified → TradingView 30-day share</p>
+            <p class="plan-condition-desc" data-lang="zh">核实后共享TradingView 30天</p>
+            <p class="plan-condition-desc" data-lang="ja">確認後TradingView 30日間共有</p>
+          </div>
+        </div>
+        <a class="plan-btn plan-btn-a" href="https://bingxdao.com/invite/ZS5ZJ3/" target="_blank">
+          <span data-lang-inline="ko">BingX 가입하기 →</span>
+          <span data-lang-inline="en">Join BingX →</span>
+          <span data-lang-inline="zh">注册BingX →</span>
+          <span data-lang-inline="ja">BingXに登録 →</span>
+        </a>
       </div>
     </div>
-    <div class="condition-list" style="border-top:none;">
-      <div class="condition-item">
-        <div class="condition-dot" style="background:var(--gold);"></div>
-        <div>
-          <p class="condition-name">
-            <span data-lang-inline="ko">BingX 누적 거래대금 $200,000 달성</span>
-            <span data-lang-inline="en">Reach $200,000 in BingX Volume</span>
-            <span data-lang-inline="zh">BingX累计交易额达$200,000</span>
-          <span data-lang-inline="ja">BingX取引額$200,000達成</span>
-          </p>
-          <span class="condition-name-en">FIRST MONTH CONDITION</span>
-          <p class="condition-desc" data-lang="ko">아래 링크를 통해 BingX에 신규 가입 후, 선물 거래 기준 누적 거래대금 $200,000을 달성하면 지표를 신청할 수 있습니다. 레버리지 포함 금액이며, 이 조건만 충족하면 누구나 첫 달 신청이 가능합니다.</p>
-          <p class="condition-desc" data-lang="en">Sign up for BingX via the link below and reach $200,000 in cumulative futures volume (leverage included). Anyone who meets this condition can apply for their first month — no ranking required.</p>
-          <p class="condition-desc" data-lang="zh">通过下方链接新注册BingX，期货累计交易额（含杠杆）达到$200,000即可申请指标。满足此条件的任何人均可申请首月使用——无需排名。</p>
-          <p class="condition-desc" data-lang="ja">下のリンクから新規BingX登録後、先物取引累計額（レバレッジ込み）$200,000を達成すれば誰でも初月申請可能です。ランキング不要。</p>
+
+    <!-- PLAN B -->
+    <div class="plan-card plan-b">
+      <div class="plan-header">
+        <p class="plan-tag">PLAN B</p>
+        <p class="plan-price">30 USDT</p>
+        <p class="plan-period">
+          <span data-lang-inline="ko">30일 이용권</span>
+          <span data-lang-inline="en">30-Day Access</span>
+          <span data-lang-inline="zh">30天使用权</span>
+          <span data-lang-inline="ja">30日間アクセス</span>
+        </p>
+      </div>
+      <div class="plan-body">
+        <div class="plan-condition">
+          <span class="plan-condition-num">01</span>
+          <div>
+            <p class="plan-condition-title">
+              <span data-lang-inline="ko">텔레그램으로 문의</span>
+              <span data-lang-inline="en">Contact via Telegram</span>
+              <span data-lang-inline="zh">通过Telegram咨询</span>
+              <span data-lang-inline="ja">Telegramでお問い合わせ</span>
+            </p>
+            <p class="plan-condition-desc" data-lang="ko">@sckim4441 로 이용 신청 메시지 전송</p>
+            <p class="plan-condition-desc" data-lang="en">Send a message to @sckim4441</p>
+            <p class="plan-condition-desc" data-lang="zh">向@sckim4441发送申请消息</p>
+            <p class="plan-condition-desc" data-lang="ja">@sckim4441にメッセージを送信</p>
+          </div>
         </div>
+        <div class="plan-condition">
+          <span class="plan-condition-num">02</span>
+          <div>
+            <p class="plan-condition-title">
+              <span data-lang-inline="ko">30 USDT 송금</span>
+              <span data-lang-inline="en">Send 30 USDT</span>
+              <span data-lang-inline="zh">转账30 USDT</span>
+              <span data-lang-inline="ja">30 USDTを送金</span>
+            </p>
+            <p class="plan-condition-desc" data-lang="ko">상담 후 안내받은 지갑 주소로 직접 송금</p>
+            <p class="plan-condition-desc" data-lang="en">Send directly to the wallet address provided after consultation</p>
+            <p class="plan-condition-desc" data-lang="zh">咨询后直接转账至提供的钱包地址</p>
+            <p class="plan-condition-desc" data-lang="ja">相談後に案内されたウォレットアドレスに直接送金</p>
+          </div>
+        </div>
+        <div class="plan-condition">
+          <span class="plan-condition-num">03</span>
+          <div>
+            <p class="plan-condition-title">
+              <span data-lang-inline="ko">트레이딩뷰 ID 전송</span>
+              <span data-lang-inline="en">Send TradingView ID</span>
+              <span data-lang-inline="zh">发送TradingView ID</span>
+              <span data-lang-inline="ja">TradingView IDを送信</span>
+            </p>
+            <p class="plan-condition-desc" data-lang="ko">확인 후 트레이딩뷰 30일 공유</p>
+            <p class="plan-condition-desc" data-lang="en">Verified → TradingView 30-day share</p>
+            <p class="plan-condition-desc" data-lang="zh">核实后共享TradingView 30天</p>
+            <p class="plan-condition-desc" data-lang="ja">確認後TradingView 30日間共有</p>
+          </div>
+        </div>
+        <a class="plan-btn plan-btn-b" href="https://t.me/sckim4441" target="_blank">
+          <span data-lang-inline="ko">텔레그램으로 신청하기 →</span>
+          <span data-lang-inline="en">Apply via Telegram →</span>
+          <span data-lang-inline="zh">通过Telegram申请 →</span>
+          <span data-lang-inline="ja">Telegramで申請する →</span>
+        </a>
       </div>
     </div>
+
   </div>
 
-  <!-- 갱신 신청 -->
-  <div style="margin-top:2rem;">
-    <div style="background:var(--dark3); border:1px solid var(--border); border-bottom:none; padding:1rem 1.5rem;">
-      <p style="font-family:'Space Mono',monospace; font-size:10px; letter-spacing:0.2em; color:var(--gold);">
-        <span data-lang-inline="ko">STEP 2 · 다음 달 갱신 조건</span>
-        <span data-lang-inline="en">STEP 2 · RENEWAL — NEXT MONTH</span>
-        <span data-lang-inline="zh">STEP 2 · 续期条件（次月起）</span>
-      </p>
-    </div>
-    <div class="info-grid" style="border-top:none; margin-bottom:0;">
-      <div class="info-box">
-        <div class="info-num">50</div>
-        <div class="info-label">
-          <span data-lang-inline="ko">최대 이용 인원</span>
-          <span data-lang-inline="en">Max Users</span>
-          <span data-lang-inline="zh">最多用户数</span>
-          <span data-lang-inline="ja">最大ユーザー数</span>
-        </div>
-      </div>
-      <div class="info-box">
-        <div class="info-num">TOP50</div>
-        <div class="info-label">
-          <span data-lang-inline="ko">거래량 순위 내 승인</span>
-          <span data-lang-inline="en">Top 50 Volume Ranking</span>
-          <span data-lang-inline="zh">交易量前50名</span>
-          <span data-lang-inline="ja">取引量TOP50</span>
-        </div>
-      </div>
-    </div>
-    <div class="condition-list" style="border-top:none;">
-      <div class="condition-item">
-        <div class="condition-dot" style="background:var(--gold);"></div>
-        <div>
-          <p class="condition-name">
-            <span data-lang-inline="ko">지표 이용자 거래량 순위 TOP 50 유지</span>
-            <span data-lang-inline="en">Maintain TOP 50 Volume Among Active Users</span>
-            <span data-lang-inline="zh">在活跃用户中保持交易量前50名</span>
-          <span data-lang-inline="ja">アクティブユーザー内取引量TOP50維持</span>
-          </p>
-          <span class="condition-name-en">RENEWAL CONDITION</span>
-          <p class="condition-desc" data-lang="ko">계속 사용을 원하시면 다음 달 재신청을 하시면 됩니다. 단, 현재 지표를 이용 중인 사람들의 거래량 순위에서 상위 50위 안에 들어야 승인이 됩니다. 최대 이용 인원이 50명이기 때문에 거래량이 낮으면 승인이 거절될 수 있습니다.</p>
-          <p class="condition-desc" data-lang="en">To continue using the indicator, simply re-apply the following month. However, you must rank within the top 50 by trading volume among all current users. Since the maximum is 50 users, low volume may result in rejection.</p>
-          <p class="condition-desc" data-lang="zh">如需继续使用指标，下月重新申请即可。但您必须在所有当前用户中的交易量排名进入前50名。由于最多限50人，交易量低可能导致申请被拒。</p>
-          <p class="condition-desc" data-lang="ja">継続使用希望の場合は翌月再申請してください。ただし、現在の全ユーザー中の取引量ランキングで上位50位以内に入る必要があります。最大50名のため、取引量が低いと却下される場合があります。</p>
-        </div>
-      </div>
-    </div>
+  <!-- 공통 안내 -->
+  <div style="margin-top:2rem; border:1px solid var(--border); background:var(--dark2); padding:1.5rem 2rem;">
+    <p style="font-family:'Space Mono',monospace; font-size:10px; color:var(--gold); letter-spacing:0.2em; margin-bottom:0.75rem;">
+      <span data-lang-inline="ko">NOTICE · 공통 안내</span>
+      <span data-lang-inline="en">NOTICE · COMMON INFO</span>
+      <span data-lang-inline="zh">注意事项</span>
+      <span data-lang-inline="ja">共通のご案内</span>
+    </p>
+    <p style="font-size:13px; color:var(--text-sub); line-height:1.8; font-weight:300;" data-lang="ko">두 플랜 모두 최대 50명 한정이며, 갱신 시 거래량 기준 TOP 50 안에 들어야 승인됩니다. 이용 기간은 공유 시작일로부터 30일입니다.</p>
+    <p style="font-size:13px; color:var(--text-sub); line-height:1.8; font-weight:300;" data-lang="en">Both plans are limited to 50 users. Renewal requires a top 50 volume ranking. Access period is 30 days from the share date.</p>
+    <p style="font-size:13px; color:var(--text-sub); line-height:1.8; font-weight:300;" data-lang="zh">两种方案均限50人。续期需在交易量排名前50名内。使用期限为共享之日起30天。</p>
+    <p style="font-size:13px; color:var(--text-sub); line-height:1.8; font-weight:300;" data-lang="ja">両プランとも最大50名限定です。更新には取引量ランキング上位50位以内が必要です。利用期間は共有開始日から30日間です。</p>
   </div>
 
 </div>
+
+
 
 <!-- 05 신청 방법 -->
 <div class="section" style="padding-top:0;">
